@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "plugins": {
+    "demo@mkt": [
+      {
+        "scope": "user",
+        "installPath": "plugins/cache/mkt/demo/1.2.0",
+        "version": "1.2.0",
+        "installedAt": "2026-01-02T03:04:05.000Z",
+        "lastUpdated": "2026-02-03T04:05:06.000Z"
+      }
+    ]
+  }
+}

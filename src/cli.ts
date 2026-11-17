@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { appendSnapshot } from './journal.js';
 import { buildCards } from './join.js';
-import { evaluateRules, loadRules } from './rules.js';
+import { evaluateRules, loadRuleConfig, type RuleConfig } from './rules.js';
 import { resolveRoots } from './roots.js';
 import { scanConnectors } from './scan/connectors.js';
 import { scanMcpServers, scanHooks, scanMemory, scanScheduledTasks } from './scan/config.js';
@@ -20,6 +20,7 @@ import { checkUpdates } from './updates.js';
 import { errMessage } from './util.js';
 import { collectUsage, type Exec } from './usage/index.js';
 import { lifetimeFromClaudeJson } from './usage/native.js';
+import { missedFromTranscripts } from './usage/oracle.js';
 
 const KINDS: Kind[] = ['skill', 'plugin', 'mcp_server', 'agent', 'hook', 'scheduled_task', 'memory', 'instructions'];
 
@@ -118,7 +119,21 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     warnings.push({ source: 'usage', message: errMessage(e) });
     usage = { skills: new Map(), servers: new Map(), agents: new Map(), source: 'transcripts' as const, sessions: 0 };
   }
-  let cards = buildCards(items, usage, lifetimeFromClaudeJson(roots));
+  // rules file: rules and the optional skill oracle; a broken file is one warning
+  const ruleFile = values.rules ?? path.join(roots.stateDir, 'rules.json');
+  let ruleConfig: RuleConfig = { rules: [] };
+  let ruleError: string | undefined;
+  try { ruleConfig = loadRuleConfig(ruleFile); } catch (e) { ruleError = errMessage(e); }
+
+  let missed = new Map<string, number>();
+  if (ruleConfig.oracle) {
+    try {
+      missed = await missedFromTranscripts(roots, ruleConfig.oracle, days, when);
+    } catch (e) {
+      warnings.push({ source: 'oracle', message: errMessage(e) });
+    }
+  }
+  let cards = buildCards(items, usage, lifetimeFromClaudeJson(roots), missed);
 
   try {
     const updated = checkUpdates(cards, roots);
@@ -130,8 +145,8 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
 
   let rules: RuleResult[] = [];
   try {
-    const ruleFile = values.rules ?? path.join(roots.stateDir, 'rules.json');
-    rules = await evaluateRules(roots, loadRules(ruleFile), days, when);
+    if (ruleError !== undefined) throw new Error(ruleError);
+    rules = await evaluateRules(roots, ruleConfig.rules, days, when);
   } catch (e) {
     warnings.push({ source: 'rules', message: errMessage(e) });
   }

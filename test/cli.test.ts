@@ -71,6 +71,31 @@ describe('main scan', () => {
     expect(state.rules).toEqual([]);
   });
 
+  it('marks a recommended but never loaded skill as missed, and keeps used ones used', async () => {
+    const t = tmp();
+    const out = path.join(t, 'state.json');
+    const home = path.join(dir, 'fixtures', 'oracle-home');
+    const rules = path.join(dir, '..', 'rules.example.json');
+    expect(await main(['scan', '--home', home, '--out', out, '--rules', rules], { exec, now, env: { XDG_STATE_HOME: t } })).toBe(0);
+    const state = JSON.parse(fs.readFileSync(out, 'utf8')) as State;
+    const by = new Map(state.cards.map((c) => [c.id, c]));
+    expect(by.get('cli:skill:alpha')).toMatchObject({ verdict: 'missed', usage: { uses30d: 0, missed30d: 2 } });
+    expect(by.get('cli:skill:delta')).toMatchObject({ verdict: 'rare', usage: { uses30d: 1, missed30d: 1 } });
+    expect(state.cards.every((c) => typeof c.usage.missed30d === 'number')).toBe(true);
+  });
+
+  it('gives no missed verdicts when the rules file configures no oracle', async () => {
+    const t = tmp();
+    const out = path.join(t, 'state.json');
+    const rules = path.join(t, 'rules.json');
+    fs.writeFileSync(rules, JSON.stringify([]));
+    const home = path.join(dir, 'fixtures', 'oracle-home');
+    expect(await main(['scan', '--home', home, '--out', out, '--rules', rules], { exec, now, env: { XDG_STATE_HOME: t } })).toBe(0);
+    const state = JSON.parse(fs.readFileSync(out, 'utf8')) as State;
+    expect(state.cards.some((c) => c.verdict === 'missed')).toBe(false);
+    expect(state.cards.find((c) => c.id === 'cli:skill:alpha')!.verdict).toBe('asleep');
+  });
+
   it('returns 2 for a bad command line', async () => {
     expect(await main(['bogus'], { exec, now })).toBe(2);
     expect(await main(['scan', '--days', 'x'], { exec, now })).toBe(2);

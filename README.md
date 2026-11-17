@@ -28,7 +28,20 @@ Usage counts come from `cclens` when it is installed and works, and from a built
 
 The scan is read-only and makes no network calls. MCP server `env`, `headers` and `args` are never read into the output: only the server name, transport and URL host. Token figures are estimates (characters divided by 4).
 
-Nothing leaves your machine. MIT licensed.
+## Enrich
+
+```
+npm run enrich -- [--home <dir>] [--out <file>] [--cmd "<shell command>"] [--batch 25]
+```
+
+`enrich` reads `state.json`, asks a describer for a branch (`code`, `design`, `research`, `writing`, `data`, `automation`, `memory`, `communication`, `finance`, `system`, `other`), a short title and a one-to-two sentence summary in English and Russian for every card it has not described yet, and writes them back with `enriched: true`. Without enrichment every card still has a `branch` (a default by kind) and a `pack` (owning plugin, `user`, `desktop`, `synced`, `connectors` or `app`).
+
+- The describer is any command. It gets one JSON object on stdin, `{ "branches": [...], "items": [{ "id", "kind", "name", "description", "sampleTools" }] }`, and prints one JSON array `[{ "id", "branch", "title": {"en","ru"}, "summary": {"en","ru"} }]`. Text around the array is ignored. Invalid entries are skipped with a warning, an unknown branch becomes `other`. The default is `claude -p --model haiku` with the instruction in `src/enrich/prompt.ts`; `--cmd` replaces it with a shell command line.
+- Only `id`, `kind`, `name`, `description` and, for connectors, `sampleTools` are sent. Paths, config values and MCP settings are not. Hooks, memory and instructions are never sent: they have nothing to describe that is safe to share (memory names are built from project paths). The default describer talks to the Anthropic API; a `--cmd` of your own decides where the data goes.
+- Descriptions are cached in `enrich.json` next to the state file, keyed by a hash of kind, name and description. An unchanged item is never sent again; a changed one is. `scan` applies the cache, so a rescan keeps descriptions.
+- A describer that fails, times out or returns junk produces warnings (source `enrich`) and leaves those cards un-enriched; the run continues and the cache is only replaced by a complete, valid file.
+
+Nothing leaves your machine during `scan`. `enrich` sends the fields above to the describer you choose. MIT licensed.
 
 ## Verified on
 

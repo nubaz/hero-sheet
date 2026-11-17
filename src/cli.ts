@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
+import { applyCache, enrichCards, loadCache } from './enrich/index.js';
 import { appendSnapshot } from './journal.js';
 import { buildCards } from './join.js';
 import { evaluateRules, loadRuleConfig, type RuleConfig } from './rules.js';
@@ -24,7 +25,10 @@ import { missedFromTranscripts } from './usage/oracle.js';
 
 const KINDS: Kind[] = ['skill', 'plugin', 'mcp_server', 'agent', 'hook', 'scheduled_task', 'memory', 'instructions'];
 
-const USAGE = `usage: hero-sheet scan [--home <dir>] [--out <file>] [--rules <file>] [--days 30]`;
+const USAGE = `usage: hero-sheet scan [--home <dir>] [--out <file>] [--rules <file>] [--days 30]
+       hero-sheet enrich [--home <dir>] [--out <file>] [--cmd "<shell command>"] [--batch 25]`;
+
+const CACHE_NAME = 'enrich.json';
 
 /** Runs a binary without a shell. Missing binary gives code 127. */
 export const defaultExec: Exec = (cmd, args) =>
@@ -47,7 +51,7 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
   const now = deps.now ?? (() => new Date());
   const env = deps.env ?? process.env;
 
-  let values: { home?: string; out?: string; rules?: string; days?: string };
+  let values: { home?: string; out?: string; rules?: string; days?: string; cmd?: string; batch?: string };
   let command: string | undefined;
   try {
     const parsed = parseArgs({
@@ -56,6 +60,7 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
       options: {
         home: { type: 'string' }, out: { type: 'string' },
         rules: { type: 'string' }, days: { type: 'string' },
+        cmd: { type: 'string' }, batch: { type: 'string' },
       },
     });
     values = parsed.values;
@@ -65,6 +70,7 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     return 2;
   }
   const days = values.days === undefined ? 30 : Number(values.days);
+  if (command === 'enrich') return enrichCommand(values, env);
   if (command !== 'scan' || !Number.isFinite(days) || days <= 0) {
     process.stderr.write(`${USAGE}\n`);
     return 2;
@@ -143,6 +149,13 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     warnings.push({ source: 'updates', message: errMessage(e) });
   }
 
+  // descriptions from an earlier `enrich` run live in a cache next to the state file
+  const out = values.out ?? path.join(roots.stateDir, 'state.json');
+  const cache = loadCache(path.join(path.dirname(out), CACHE_NAME));
+  warnings.push(...cache.warnings);
+  const applied = applyCache(cards, cache);
+  cards = applied.cards;
+
   let rules: RuleResult[] = [];
   try {
     if (ruleError !== undefined) throw new Error(ruleError);
@@ -157,15 +170,48 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
   const state: State = {
     generatedAt: when.toISOString(),
     usageSource: usage.source,
+    enriched: applied.enriched,
     cards, rules, warnings, totals,
   };
-  const out = values.out ?? path.join(roots.stateDir, 'state.json');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, JSON.stringify(state, null, 2) + '\n');
   appendSnapshot(roots, state);
 
   process.stdout.write(
     `${cards.length} items, ${warnings.length} warnings, usage from ${state.usageSource} -> ${out}\n`,
+  );
+  return 0;
+}
+
+/** Reads state.json, describes cards that have no cache hit, writes state.json again. */
+async function enrichCommand(
+  values: { home?: string; out?: string; cmd?: string; batch?: string },
+  env: NodeJS.ProcessEnv,
+): Promise<number> {
+  const batch = values.batch === undefined ? 25 : Number(values.batch);
+  if (!Number.isInteger(batch) || batch < 1) {
+    process.stderr.write(`--batch needs a whole number of 1 or more\n${USAGE}\n`);
+    return 2;
+  }
+  const roots = resolveRoots(values.home, env);
+  const file = values.out ?? path.join(roots.stateDir, 'state.json');
+  let state: State;
+  try {
+    state = JSON.parse(fs.readFileSync(file, 'utf8')) as State;
+    if (!Array.isArray(state.cards)) throw new Error('no cards array');
+  } catch (e) {
+    process.stderr.write(`cannot read ${file}: ${errMessage(e)}. Run scan first.\n`);
+    return 1;
+  }
+  const report = await enrichCards(state.cards, {
+    command: values.cmd, batch, cacheFile: path.join(path.dirname(file), CACHE_NAME),
+  });
+  state.cards = report.cards;
+  state.enriched = report.enriched;
+  state.warnings = [...(state.warnings ?? []).filter((w) => w.source !== 'enrich'), ...report.warnings];
+  fs.writeFileSync(file, JSON.stringify(state, null, 2) + '\n');
+  process.stdout.write(
+    `${report.cached} cached, ${report.sent} sent in ${report.batches} batches, ${report.learned} described, ${report.warnings.length} warnings -> ${file}\n`,
   );
   return 0;
 }

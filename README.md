@@ -18,11 +18,11 @@ npm run scan -- [--home <dir>] [--out <file>] [--rules <file>] [--days 30]
 
 `scan` reads your Claude Code setup and writes `state.json`, a list of cards with usage, a verdict and an update flag. It also appends one line per run to `journal.ndjson`. Both live in `${XDG_STATE_HOME:-~/.local/state}/hero-sheet/` unless `--out` says otherwise.
 
-- `--home <dir>` scans another home directory, for example a copy. `cclens` and the update check are skipped then, because they can only read the real home; usage comes from that home's transcripts.
+- `--home <dir>` scans another home directory, for example a copy. `cclens` is skipped then, because it can only read the real home; usage comes from that home's transcripts. The update check reads files under that home, so it still runs.
 - `--rules <file>` loads rule checks. The default is `rules.json` next to the state file. See `rules.example.json`: a rule is a regular expression matched against Bash commands, and the report shows the share of sessions that match.
 - `--days` sets the usage window (default 30).
 
-Usage counts come from `cclens` when it is installed and works, and from a built-in transcript parser otherwise; `state.usageSource` says which. The update check calls `claude plugin list --available --json`. If it fails, you get a warning and no update flags.
+Usage counts come from `cclens` when it is installed and works, and from a built-in transcript parser otherwise; `state.usageSource` says which. The update check is a file read: for each installed plugin it compares the installed version with the one in the marketplace clone under `~/.claude/plugins/marketplaces/<marketplace>` (the `version` in `marketplace.json`, or the `plugin.json` version at the entry's relative `source`). Plugins with no comparable version, including commit-hash installs, get no update flag and no warning.
 
 The scan is read-only and makes no network calls. MCP server `env`, `headers` and `args` are never read into the output: only the server name, transport and URL host. Token figures are estimates (characters divided by 4).
 
@@ -34,8 +34,5 @@ One real macOS setup, 2026-11-16, `cclens` 0.4.0 installed. A full scan took abo
 
 ## Known gaps
 
-- Update check finds nothing yet. `claude plugin list --available --json` leaves installed plugins out of the catalog, so versions have to be compared against the marketplace clones under `~/.claude/plugins/marketplaces` instead.
-- User agents in `~/.claude/agents` are not scanned.
-- Account-synced plugins (`~/.claude/plugins/synced`) are not scanned.
 - claude.ai connectors show up by id with sample tool names; their display names are not stored locally.
 - Run binaries from `./node_modules/.bin/` if the checkout path contains a colon; `npx` and `npm test` break on it.

@@ -43,6 +43,17 @@ npm run enrich -- [--home <dir>] [--out <file>] [--cmd "<shell command>"] [--bat
 
 Nothing leaves your machine during `scan`. `enrich` sends the fields above to the describer you choose. MIT licensed.
 
+## The page
+
+```
+hero-sheet serve [--port 4477] [--state <file>] [--candidates <file>]
+```
+
+Serves `web/` and the state file. The main view is a radial map: the hero and the core of the setup (instructions, memory, hooks, plugins) in the centre, one sector per branch around it. Distance from the centre is distance from daily use: in use, then asleep, then not yet learned. Pan and zoom with mouse, trackpad or touch; click a sector or a branch chip to fly to it. A list view (the toggle in the toolbar) shows the same nodes as a tree and is the accessible fallback.
+
+- One node per capability. Cards of the same kind with the same name after the last colon merge; the detail panel shows which of the four places hold it (Code tab and terminal, synced from account, desktop app, claude.ai connectors) and flags duplicates. The "Where" filter lights up what is present in, or missing from, one place.
+- `--candidates <file>` loads a JSON array of tools you could install: `{ id, name, title?: {en, ru}, summary?: {en, ru}, branch, status: "candidate" | "tested" | "rejected", score?: number, url? }`. They are drawn as dashed ghost nodes in the outer ring of their branch. A candidate whose name matches an installed capability is not drawn as a ghost; the installed node notes it instead. Without the option, `/candidates.json` is `[]` (the sample candidates go with the sample state only).
+
 ## Verified on
 
 One real macOS setup, 2026-11-16, `cclens` 0.4.0 installed. A full scan took about 9 seconds and produced 202 cards: 114 skills (user, plugin-shipped, desktop app, account-synced), 16 plugins, 50 MCP servers (configured, app-provided and inferred claude.ai connectors), 5 hooks, 5 scheduled tasks, 11 memory files. Counts were checked by hand against the files on disk. No value from an MCP `env` or `headers` block appeared in the output.

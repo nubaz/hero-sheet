@@ -7,12 +7,26 @@
 <title>Hero Sheet</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l8 3v7c0 5-4 8-8 10-4-2-8-5-8-10V5z' fill='%239a6b12'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./map.css">
 </head>
-<body>
+<body class="is-map">
 <div class="layout">
   <main class="page">
     <div id="top"></div>
-    <div id="tree" class="tree" aria-live="polite"><p class="empty">Loading the sheet...</p></div>
+    <div id="legend"></div>
+    <div class="stage-wrap">
+    <nav id="chips" class="chips" aria-label="Branches"></nav>
+    <section id="map-stage" class="map-stage">
+      <div id="map-svg-host" class="map-host" role="group" aria-label="Skill map"></div>
+      <div class="map-ctl">
+        <button type="button" data-zoom="in"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/></svg></button>
+        <button type="button" data-zoom="out"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 8h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/></svg></button>
+        <button type="button" data-zoom="fit"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button>
+      </div>
+      <p id="map-hint" class="map-hint"></p>
+    </section>
+    <div id="tree" class="tree" aria-live="polite" hidden><p class="empty">Loading the sheet...</p></div>
+    </div>
     <footer id="foot" class="foot"></footer>
   </main>
   <aside id="drawer" class="drawer" role="dialog" aria-modal="false" aria-labelledby="d-title" hidden>

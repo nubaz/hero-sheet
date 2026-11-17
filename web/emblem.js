@@ -29,7 +29,7 @@ const GLYPH = {
 const glyph = (kind, size, sw) => `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${GLYPH[kind] || GLYPH.skill}</svg>`;
 
 /** Shield emblem. `scope` keeps gradient ids unique when the same card is drawn twice. */
-export function emblem(card, scope = 'n') {
+export function emblem(card, scope = 'n', attrs = '') {
   if (card.art && /^(data:image\/|https?:\/\/|\/|\.\/)/i.test(card.art)) {
     return `<img class="emb emb-img" src="${esc(card.art)}" alt="" loading="lazy">`;
   }
@@ -46,13 +46,16 @@ export function emblem(card, scope = 'n') {
   const pips = Math.floor(2 + r() * 4);
   let pp = '';
   for (let i = 0; i < pips; i++) pp += `<circle cx="${(24 + i * (72 / pips) + 6).toFixed(0)}" cy="${(96 + r() * 3).toFixed(0)}" r="2.2" fill="hsl(${hue2} 70% 80%)"/>`;
-  return `<svg viewBox="0 0 120 124" class="emb" aria-hidden="true" focusable="false">
+  return `<svg viewBox="0 0 120 124" class="emb" aria-hidden="true" focusable="false"${attrs ? ' ' + attrs : ''}>
 <defs><radialGradient id="${id}" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="hsl(${hue} 55% 46%)"/><stop offset="1" stop-color="hsl(${hue2} 60% 18%)"/></radialGradient></defs>
 <path d="M60 4l50 14v44c0 28-22 48-50 58C32 110 10 90 10 62V18z" fill="url(#${id})" stroke="hsl(${hue2} 50% 78%)" stroke-width="3"/>
 <path d="M60 12l42 12v38c0 23-18 40-42 49C36 102 18 85 18 62V24z" fill="none" stroke="hsl(${hue2} 50% 78% / .5)" stroke-width="1.2"/>
 <g>${ray}</g>${pp}
 <g transform="translate(36 38) scale(2)" color="hsl(${hue2} 80% 92%)">${glyph(card.kind, 24, 1.3)}</g></svg>`;
 }
+
+/** Outline glyph for a kind, 24x24 box, drawn in currentColor. Used by ghost (not yet learned) nodes. */
+export const glyphOutline = (kind, size = 24, sw = 1.5, attrs = '') => glyph(kind, size, sw).replace('<svg ', `<svg ${attrs} `);
 
 /** Small drawn marks that sit on a node medallion. */
 export const MARK = {

@@ -20,7 +20,7 @@ const TYPES: Record<string, string> = {
   '.ico': 'image/x-icon',
 };
 
-const USAGE = 'usage: hero-sheet serve [--port 4477] [--state <file>]';
+const USAGE = 'usage: hero-sheet serve [--port 4477] [--state <file>] [--candidates <file>]';
 
 /** The `web/` folder next to `src/` (or `dist/`). */
 export function defaultWebDir(): string {
@@ -31,6 +31,8 @@ export interface ServeOptions {
   webDir: string;
   /** State file written by `scan`. When it does not exist, the sample state is served. */
   stateFile: string;
+  /** Optional JSON array of candidate tools, served at `/candidates.json`. With none, the sample candidates go with the sample state and everything else gets `[]`. */
+  candidatesFile?: string;
 }
 
 function send(res: http.ServerResponse, status: number, type: string, body: Buffer | string, head: boolean, extra: Record<string, string> = {}): void {
@@ -70,6 +72,19 @@ export function createHandler(opts: ServeOptions): http.RequestListener {
       return send(res, 404, 'text/plain; charset=utf-8', 'No state file and no sample state\n', head);
     }
 
+    if (pathname === '/candidates.json') {
+      const usingSample = !fs.existsSync(opts.stateFile);
+      const sources: [string, string][] = [];
+      if (opts.candidatesFile) sources.push([opts.candidatesFile, 'candidates']);
+      else if (usingSample) sources.push([path.join(root, 'sample-candidates.json'), 'sample']);
+      for (const [file, source] of sources) {
+        try {
+          return send(res, 200, TYPES['.json'], fs.readFileSync(file), head, { 'x-hero-sheet-source': source });
+        } catch { /* fall back to nothing */ }
+      }
+      return send(res, 200, TYPES['.json'], '[]', head, { 'x-hero-sheet-source': 'none' });
+    }
+
     if (pathname.endsWith('/')) pathname += 'index.html';
     const file = path.resolve(root, '.' + pathname);
     if (file !== root && !file.startsWith(root + path.sep)) {
@@ -99,9 +114,9 @@ export function startServer(opts: ServeOptions, port: number): Promise<http.Serv
 
 /** `hero-sheet serve`: runs until the process is stopped. Returns an exit code only on failure. */
 export async function serveCommand(argv: string[], env: NodeJS.ProcessEnv = process.env): Promise<number> {
-  let values: { port?: string; state?: string };
+  let values: { port?: string; state?: string; candidates?: string };
   try {
-    values = parseArgs({ args: argv, options: { port: { type: 'string' }, state: { type: 'string' } } }).values;
+    values = parseArgs({ args: argv, options: { port: { type: 'string' }, state: { type: 'string' }, candidates: { type: 'string' } } }).values;
   } catch (e) {
     process.stderr.write(`${errMessage(e)}\n${USAGE}\n`);
     return 2;
@@ -113,7 +128,7 @@ export async function serveCommand(argv: string[], env: NodeJS.ProcessEnv = proc
   }
   const stateFile = values.state ?? path.join(resolveRoots(undefined, env).stateDir, 'state.json');
   try {
-    const server = await startServer({ webDir: defaultWebDir(), stateFile }, port);
+    const server = await startServer({ webDir: defaultWebDir(), stateFile, candidatesFile: values.candidates }, port);
     const addr = server.address();
     const shown = typeof addr === 'object' && addr ? addr.port : port;
     const source = fs.existsSync(stateFile) ? stateFile : 'sample data (no state file yet)';

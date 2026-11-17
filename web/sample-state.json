@@ -1,1680 +1,1903 @@
 {
- "generatedAt": "2026-11-16T12:00:00.000Z",
- "usageSource": "transcripts",
- "enriched": true,
- "sessions": 142,
- "cards": [
-  {
-   "id": "cli:skill:superpowers:test-driven-development",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "superpowers:test-driven-development",
-   "enabled": true,
-   "origin": "superpowers",
-   "description": "Writes a failing test before the code, then makes it pass. Used for every new feature or bug fix. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "superpowers",
-   "usage": {
-    "uses30d": 14,
-    "lifetimeUses": 120,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-16T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 60,
-   "staticTokensEst": 1900,
-   "title": {
-    "en": "Test-first coding",
-    "ru": "Сначала тесты"
-   },
-   "summary": {
-    "en": "Writes a failing test before the code, then makes it pass. Used for every new feature or bug fix.",
-    "ru": "Сначала пишет падающий тест, потом код. Применяется для каждой новой функции и исправления."
-   }
-  },
-  {
-   "id": "cli:skill:superpowers:systematic-debugging",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "superpowers:systematic-debugging",
-   "enabled": true,
-   "origin": "superpowers",
-   "description": "Walks through a bug step by step before proposing a fix. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "superpowers",
-   "usage": {
-    "uses30d": 9,
-    "lifetimeUses": 64,
-    "missed30d": 1,
-    "lastUsedAt": "2026-11-15T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 55,
-   "staticTokensEst": 1500,
-   "title": {
-    "en": "Methodical debugging",
-    "ru": "Системная отладка"
-   },
-   "summary": {
-    "en": "Walks through a bug step by step before proposing a fix.",
-    "ru": "Разбирает ошибку по шагам, прежде чем предлагать исправление."
-   }
-  },
-  {
-   "id": "cli:skill:superpowers:writing-plans",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "superpowers:writing-plans",
-   "enabled": true,
-   "origin": "superpowers",
-   "description": "Turns a spec into a step-by-step plan before any code is touched. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "superpowers",
-   "usage": {
-    "uses30d": 2,
-    "lifetimeUses": 31,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-14T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 50,
-   "staticTokensEst": 1400,
-   "title": {
-    "en": "Plan writer",
-    "ru": "Составитель планов"
-   },
-   "summary": {
-    "en": "Turns a spec into a step-by-step plan before any code is touched.",
-    "ru": "Превращает спецификацию в пошаговый план до начала работы с кодом."
-   }
-  },
-  {
-   "id": "cli:skill:superpowers:executing-plans",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "superpowers:executing-plans",
-   "enabled": true,
-   "origin": "superpowers",
-   "description": "Follows a written plan task by task and checks each one. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "superpowers",
-   "usage": {
-    "uses30d": 1,
-    "lifetimeUses": 18,
-    "missed30d": 2,
-    "lastUsedAt": "2026-11-13T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 48,
-   "staticTokensEst": 1300,
-   "title": {
-    "en": "Plan runner",
-    "ru": "Исполнитель планов"
-   },
-   "summary": {
-    "en": "Follows a written plan task by task and checks each one.",
-    "ru": "Выполняет готовый план задача за задачей и проверяет каждую."
-   }
-  },
-  {
-   "id": "cli:skill:superpowers:finishing-a-development-branch",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "superpowers:finishing-a-development-branch",
-   "enabled": true,
-   "origin": "superpowers",
-   "description": "Decides how to merge, review or discard finished work. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "superpowers",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 5,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 52,
-   "staticTokensEst": 900,
-   "title": {
-    "en": "Branch wrap-up",
-    "ru": "Завершение ветки"
-   },
-   "summary": {
-    "en": "Decides how to merge, review or discard finished work.",
-    "ru": "Помогает решить, как слить, проверить или отбросить готовую работу."
-   }
-  },
-  {
-   "id": "cli:skill:superpowers:using-git-worktrees",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "superpowers:using-git-worktrees",
-   "enabled": true,
-   "origin": "superpowers",
-   "description": "Creates a separate working copy so experiments do not touch the main one. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "superpowers",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 12,
-    "missed30d": 4
-   },
-   "verdict": "missed",
-   "startupTokensEst": 47,
-   "staticTokensEst": 1100,
-   "title": {
-    "en": "Isolated workspaces",
-    "ru": "Изолированные копии"
-   },
-   "summary": {
-    "en": "Creates a separate working copy so experiments do not touch the main one.",
-    "ru": "Создаёт отдельную рабочую копию, чтобы эксперименты не трогали основную."
-   }
-  },
-  {
-   "id": "cli:skill:superpowers:requesting-code-review",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "superpowers:requesting-code-review",
-   "enabled": true,
-   "origin": "superpowers",
-   "description": "Prepares a change for review and asks for feedback. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "superpowers",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 3,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 45,
-   "staticTokensEst": 800,
-   "title": {
-    "en": "Ask for review",
-    "ru": "Запрос ревью"
-   },
-   "summary": {
-    "en": "Prepares a change for review and asks for feedback.",
-    "ru": "Готовит изменение к ревью и просит обратную связь."
-   }
-  },
-  {
-   "id": "cli:skill:verify-build",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "verify-build",
-   "enabled": true,
-   "origin": "user",
-   "description": "Runs the build and tests and reports what broke. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "user",
-   "usage": {
-    "uses30d": 7,
-    "lifetimeUses": 40,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-09T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 35,
-   "staticTokensEst": 700,
-   "title": {
-    "en": "Build checker",
-    "ru": "Проверка сборки"
-   },
-   "summary": {
-    "en": "Runs the build and tests and reports what broke.",
-    "ru": "Запускает сборку и тесты и сообщает, что сломалось."
-   }
-  },
-  {
-   "id": "cli:skill:commit-style",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "commit-style",
-   "enabled": true,
-   "origin": "user",
-   "branch": "code",
-   "pack": "user",
-   "usage": {
-    "uses30d": 4,
-    "lifetimeUses": 22,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-08T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 28,
-   "staticTokensEst": 500
-  },
-  {
-   "id": "cli:agent:code-reviewer",
-   "kind": "agent",
-   "surface": "cli",
-   "name": "code-reviewer",
-   "enabled": true,
-   "origin": "user",
-   "description": "A helper agent that reads a diff and lists problems. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "user",
-   "usage": {
-    "uses30d": 2,
-    "lifetimeUses": 15,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-16T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 40,
-   "staticTokensEst": 600,
-   "title": {
-    "en": "Code reviewer",
-    "ru": "Ревьюер кода"
-   },
-   "summary": {
-    "en": "A helper agent that reads a diff and lists problems.",
-    "ru": "Вспомогательный агент: читает изменения и перечисляет проблемы."
-   }
-  },
-  {
-   "id": "connector:mcp_server:github",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "github",
-   "enabled": true,
-   "origin": "github",
-   "description": "Lets the agent read issues and pull requests and open new ones. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "github",
-   "usage": {
-    "uses30d": 11,
-    "lifetimeUses": 90,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-15T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 320,
-   "title": {
-    "en": "GitHub",
-    "ru": "GitHub"
-   },
-   "summary": {
-    "en": "Lets the agent read issues and pull requests and open new ones.",
-    "ru": "Позволяет агенту читать задачи и запросы на слияние и создавать новые."
-   },
-   "inferred": true
-  },
-  {
-   "id": "cli:hook:format-on-save",
-   "kind": "hook",
-   "surface": "cli",
-   "name": "format-on-save",
-   "enabled": true,
-   "origin": "user",
-   "description": "Runs the code formatter after every file edit. (Raw description from the file, as its author wrote it.)",
-   "branch": "code",
-   "pack": "user",
-   "usage": {
-    "uses30d": 30,
-    "lifetimeUses": 400,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-14T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "staticTokensEst": 200,
-   "title": {
-    "en": "Format on save",
-    "ru": "Форматирование при сохранении"
-   },
-   "summary": {
-    "en": "Runs the code formatter after every file edit.",
-    "ru": "Запускает форматтер после каждой правки файла."
-   }
-  },
-  {
-   "id": "cli:skill:impeccable:critique",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "impeccable:critique",
-   "enabled": true,
-   "origin": "impeccable",
-   "description": "Reviews an interface for hierarchy, clarity and polish. (Raw description from the file, as its author wrote it.)",
-   "branch": "design",
-   "pack": "impeccable",
-   "usage": {
-    "uses30d": 5,
-    "lifetimeUses": 28,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-13T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 70,
-   "staticTokensEst": 2400,
-   "title": {
-    "en": "Design critique",
-    "ru": "Разбор дизайна"
-   },
-   "summary": {
-    "en": "Reviews an interface for hierarchy, clarity and polish.",
-    "ru": "Оценивает интерфейс: иерархию, ясность, аккуратность."
-   }
-  },
-  {
-   "id": "cli:skill:impeccable:polish",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "impeccable:polish",
-   "enabled": true,
-   "origin": "impeccable",
-   "description": "A last pass over spacing, type and states before shipping. (Raw description from the file, as its author wrote it.)",
-   "branch": "design",
-   "pack": "impeccable",
-   "usage": {
-    "uses30d": 1,
-    "lifetimeUses": 9,
-    "missed30d": 1,
-    "lastUsedAt": "2026-11-12T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 60,
-   "staticTokensEst": 1800,
-   "title": {
-    "en": "Final polish",
-    "ru": "Финальная доводка"
-   },
-   "summary": {
-    "en": "A last pass over spacing, type and states before shipping.",
-    "ru": "Последняя проверка отступов, шрифтов и состояний перед выпуском."
-   }
-  },
-  {
-   "id": "cli:skill:impeccable:adapt",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "impeccable:adapt",
-   "enabled": true,
-   "origin": "impeccable",
-   "description": "Adapts a layout to phones, tablets and desktop. (Raw description from the file, as its author wrote it.)",
-   "branch": "design",
-   "pack": "impeccable",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 4,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 55,
-   "staticTokensEst": 1500,
-   "title": {
-    "en": "Device fit",
-    "ru": "Подгонка под устройства"
-   },
-   "summary": {
-    "en": "Adapts a layout to phones, tablets and desktop.",
-    "ru": "Адаптирует макет под телефон, планшет и компьютер."
-   }
-  },
-  {
-   "id": "cli:skill:impeccable:animate",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "impeccable:animate",
-   "enabled": true,
-   "origin": "impeccable",
-   "description": "Adds small, purposeful animations. (Raw description from the file, as its author wrote it.)",
-   "branch": "design",
-   "pack": "impeccable",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 2,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 50,
-   "staticTokensEst": 1200,
-   "title": {
-    "en": "Motion",
-    "ru": "Анимация"
-   },
-   "summary": {
-    "en": "Adds small, purposeful animations.",
-    "ru": "Добавляет небольшие осмысленные анимации."
-   }
-  },
-  {
-   "id": "desktop:skill:logo-sketch",
-   "kind": "skill",
-   "surface": "desktop",
-   "name": "logo-sketch",
-   "enabled": true,
-   "origin": "user",
-   "description": "Drafts simple logo ideas as vector shapes. (Raw description from the file, as its author wrote it.)",
-   "branch": "design",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 1,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 30,
-   "staticTokensEst": 400,
-   "title": {
-    "en": "Logo sketcher",
-    "ru": "Эскизы логотипов"
-   },
-   "summary": {
-    "en": "Drafts simple logo ideas as vector shapes.",
-    "ru": "Набрасывает идеи логотипов в виде векторных фигур."
-   }
-  },
-  {
-   "id": "connector:mcp_server:figma",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "figma",
-   "enabled": true,
-   "origin": "figma",
-   "description": "Reads frames and styles from Figma files. (Raw description from the file, as its author wrote it.)",
-   "branch": "design",
-   "pack": "figma",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 6,
-    "missed30d": 3
-   },
-   "verdict": "missed",
-   "startupTokensEst": 410,
-   "title": {
-    "en": "Figma",
-    "ru": "Figma"
-   },
-   "summary": {
-    "en": "Reads frames and styles from Figma files.",
-    "ru": "Читает макеты и стили из файлов Figma."
-   }
-  },
-  {
-   "id": "synced:skill:color-palette",
-   "kind": "skill",
-   "surface": "synced",
-   "name": "color-palette",
-   "enabled": true,
-   "origin": "user",
-   "branch": "design",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 0,
-    "missed30d": 0
-   },
-   "verdict": "unknown",
-   "startupTokensEst": 25,
-   "staticTokensEst": 300,
-   "summary": {
-    "en": "Picks a colour palette from a described mood.",
-    "ru": "Подбирает палитру по описанию настроения."
-   }
-  },
-  {
-   "id": "cli:skill:deep-research",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "deep-research",
-   "enabled": true,
-   "origin": "user",
-   "description": "Runs many searches and reads sources, then writes a cited summary. (Raw description from the file, as its author wrote it.)",
-   "branch": "research",
-   "pack": "user",
-   "usage": {
-    "uses30d": 8,
-    "lifetimeUses": 52,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-15T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 45,
-   "staticTokensEst": 1600,
-   "title": {
-    "en": "Deep research",
-    "ru": "Глубокий поиск"
-   },
-   "summary": {
-    "en": "Runs many searches and reads sources, then writes a cited summary.",
-    "ru": "Делает много поисков, читает источники и пишет краткий вывод со ссылками."
-   }
-  },
-  {
-   "id": "cli:skill:paper-reader",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "paper-reader",
-   "enabled": true,
-   "origin": "user",
-   "description": "Reads a scientific paper and explains the main result. (Raw description from the file, as its author wrote it.)",
-   "branch": "research",
-   "pack": "user",
-   "usage": {
-    "uses30d": 2,
-    "lifetimeUses": 14,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-14T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 35,
-   "staticTokensEst": 900,
-   "title": {
-    "en": "Paper reader",
-    "ru": "Чтение статей"
-   },
-   "summary": {
-    "en": "Reads a scientific paper and explains the main result.",
-    "ru": "Читает научную статью и объясняет главный результат."
-   }
-  },
-  {
-   "id": "cli:skill:exa:search",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "exa:search",
-   "enabled": true,
-   "origin": "exa",
-   "description": "Finds pages by meaning, not only by keywords. (Raw description from the file, as its author wrote it.)",
-   "branch": "research",
-   "pack": "exa",
-   "usage": {
-    "uses30d": 12,
-    "lifetimeUses": 77,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-13T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 40,
-   "staticTokensEst": 700,
-   "title": {
-    "en": "Web search",
-    "ru": "Поиск в сети"
-   },
-   "summary": {
-    "en": "Finds pages by meaning, not only by keywords.",
-    "ru": "Находит страницы по смыслу, а не только по словам."
-   }
-  },
-  {
-   "id": "connector:mcp_server:exa",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "exa",
-   "enabled": true,
-   "origin": "exa",
-   "description": "Search and page reading through the Exa service. (Raw description from the file, as its author wrote it.)",
-   "branch": "research",
-   "pack": "exa",
-   "usage": {
-    "uses30d": 10,
-    "lifetimeUses": 70,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-12T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 380,
-   "title": {
-    "en": "Exa",
-    "ru": "Exa"
-   },
-   "summary": {
-    "en": "Search and page reading through the Exa service.",
-    "ru": "Поиск и чтение страниц через сервис Exa."
-   },
-   "update": {
-    "installed": "0.4.1",
-    "latest": "0.5.0"
-   }
-  },
-  {
-   "id": "desktop:skill:news-brief",
-   "kind": "skill",
-   "surface": "desktop",
-   "name": "news-brief",
-   "enabled": true,
-   "origin": "user",
-   "description": "Collects the day's headlines on chosen topics. (Raw description from the file, as its author wrote it.)",
-   "branch": "research",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 6,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 30,
-   "staticTokensEst": 500,
-   "title": {
-    "en": "News brief",
-    "ru": "Новостная сводка"
-   },
-   "summary": {
-    "en": "Collects the day's headlines on chosen topics.",
-    "ru": "Собирает заголовки дня по выбранным темам."
-   }
-  },
-  {
-   "id": "synced:agent:fact-checker",
-   "kind": "agent",
-   "surface": "synced",
-   "name": "fact-checker",
-   "enabled": true,
-   "origin": "user",
-   "description": "A helper agent that checks claims against sources. (Raw description from the file, as its author wrote it.)",
-   "branch": "research",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 3,
-    "missed30d": 2
-   },
-   "verdict": "missed",
-   "startupTokensEst": 38,
-   "staticTokensEst": 500,
-   "title": {
-    "en": "Fact checker",
-    "ru": "Проверка фактов"
-   },
-   "summary": {
-    "en": "A helper agent that checks claims against sources.",
-    "ru": "Агент, который сверяет утверждения с источниками."
-   }
-  },
-  {
-   "id": "cli:skill:humanizer",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "humanizer",
-   "enabled": true,
-   "origin": "user",
-   "description": "Rewrites stiff, machine-sounding text so it reads naturally. (Raw description from the file, as its author wrote it.)",
-   "branch": "writing",
-   "pack": "user",
-   "usage": {
-    "uses30d": 6,
-    "lifetimeUses": 33,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-09T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 42,
-   "staticTokensEst": 1100,
-   "title": {
-    "en": "Humanizer",
-    "ru": "Очеловечивание текста"
-   },
-   "summary": {
-    "en": "Rewrites stiff, machine-sounding text so it reads naturally.",
-    "ru": "Переписывает деревянный текст так, чтобы он звучал естественно."
-   }
-  },
-  {
-   "id": "cli:skill:release-notes",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "release-notes",
-   "enabled": true,
-   "origin": "user",
-   "description": "Turns a list of commits into readable release notes. (Raw description from the file, as its author wrote it.)",
-   "branch": "writing",
-   "pack": "user",
-   "usage": {
-    "uses30d": 1,
-    "lifetimeUses": 8,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-08T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 30,
-   "staticTokensEst": 600,
-   "title": {
-    "en": "Release notes",
-    "ru": "Заметки о релизе"
-   },
-   "summary": {
-    "en": "Turns a list of commits into readable release notes.",
-    "ru": "Превращает список коммитов в понятные заметки о релизе."
-   }
-  },
-  {
-   "id": "desktop:skill:docx",
-   "kind": "skill",
-   "surface": "desktop",
-   "name": "docx",
-   "enabled": true,
-   "origin": "user",
-   "description": "Creates and edits .docx files. (Raw description from the file, as its author wrote it.)",
-   "branch": "writing",
-   "pack": "user",
-   "usage": {
-    "uses30d": 2,
-    "lifetimeUses": 17,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-16T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 45,
-   "staticTokensEst": 2200,
-   "title": {
-    "en": "Word documents",
-    "ru": "Документы Word"
-   },
-   "summary": {
-    "en": "Creates and edits .docx files.",
-    "ru": "Создаёт и редактирует файлы .docx."
-   }
-  },
-  {
-   "id": "desktop:skill:pdf",
-   "kind": "skill",
-   "surface": "desktop",
-   "name": "pdf",
-   "enabled": true,
-   "origin": "user",
-   "description": "Reads, fills and builds PDF files. (Raw description from the file, as its author wrote it.)",
-   "branch": "writing",
-   "pack": "user",
-   "usage": {
-    "uses30d": 3,
-    "lifetimeUses": 25,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-15T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 45,
-   "staticTokensEst": 2000,
-   "title": {
-    "en": "PDF files",
-    "ru": "Файлы PDF"
-   },
-   "summary": {
-    "en": "Reads, fills and builds PDF files.",
-    "ru": "Читает, заполняет и собирает PDF-файлы."
-   }
-  },
-  {
-   "id": "synced:skill:email-drafts",
-   "kind": "skill",
-   "surface": "synced",
-   "name": "email-drafts",
-   "enabled": true,
-   "origin": "user",
-   "description": "Drafts replies in the owner's tone; never sends. (Raw description from the file, as its author wrote it.)",
-   "branch": "writing",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 4,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 28,
-   "staticTokensEst": 400,
-   "title": {
-    "en": "Email drafts",
-    "ru": "Черновики писем"
-   },
-   "summary": {
-    "en": "Drafts replies in the owner's tone; never sends.",
-    "ru": "Готовит ответы в манере владельца; ничего не отправляет."
-   }
-  },
-  {
-   "id": "cli:skill:meeting-notes",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "meeting-notes",
-   "enabled": true,
-   "origin": "user",
-   "description": "Cleans up raw notes into decisions and action items. (Raw description from the file, as its author wrote it.)",
-   "branch": "writing",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 2,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 26,
-   "staticTokensEst": 350,
-   "title": {
-    "en": "Meeting notes"
-   },
-   "summary": {
-    "en": "Cleans up raw notes into decisions and action items."
-   }
-  },
-  {
-   "id": "cli:skill:xlsx",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "xlsx",
-   "enabled": true,
-   "origin": "user",
-   "description": "Reads and builds spreadsheet files with formulas. (Raw description from the file, as its author wrote it.)",
-   "branch": "data",
-   "pack": "user",
-   "usage": {
-    "uses30d": 1,
-    "lifetimeUses": 11,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-12T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 48,
-   "staticTokensEst": 1900,
-   "title": {
-    "en": "Spreadsheets",
-    "ru": "Таблицы"
-   },
-   "summary": {
-    "en": "Reads and builds spreadsheet files with formulas.",
-    "ru": "Читает и собирает файлы таблиц с формулами."
-   }
-  },
-  {
-   "id": "cli:skill:csv-clean",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "csv-clean",
-   "enabled": true,
-   "origin": "user",
-   "description": "Fixes broken rows and headers in table files. (Raw description from the file, as its author wrote it.)",
-   "branch": "data",
-   "pack": "user",
-   "usage": {
-    "uses30d": 3,
-    "lifetimeUses": 19,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-11T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 30,
-   "staticTokensEst": 500,
-   "title": {
-    "en": "CSV cleaner",
-    "ru": "Чистка CSV"
-   },
-   "summary": {
-    "en": "Fixes broken rows and headers in table files.",
-    "ru": "Исправляет битые строки и заголовки в табличных файлах."
-   }
-  },
-  {
-   "id": "cli:skill:chart-maker",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "chart-maker",
-   "enabled": true,
-   "origin": "user",
-   "description": "Draws clear charts from a table of numbers. (Raw description from the file, as its author wrote it.)",
-   "branch": "data",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 7,
-    "missed30d": 3
-   },
-   "verdict": "missed",
-   "startupTokensEst": 35,
-   "staticTokensEst": 700,
-   "title": {
-    "en": "Chart maker",
-    "ru": "Построитель графиков"
-   },
-   "summary": {
-    "en": "Draws clear charts from a table of numbers.",
-    "ru": "Рисует понятные графики по таблице чисел."
-   }
-  },
-  {
-   "id": "connector:mcp_server:postgres",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "postgres",
-   "enabled": true,
-   "origin": "postgres",
-   "description": "Runs read-only questions against a database. (Raw description from the file, as its author wrote it.)",
-   "branch": "data",
-   "pack": "postgres",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 4,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 290,
-   "title": {
-    "en": "Postgres",
-    "ru": "Postgres"
-   },
-   "summary": {
-    "en": "Runs read-only questions against a database.",
-    "ru": "Выполняет запросы только на чтение к базе данных."
-   }
-  },
-  {
-   "id": "cli:skill:sql-explain",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "sql-explain",
-   "enabled": true,
-   "origin": "user",
-   "description": "Explains why a database query is slow. (Raw description from the file, as its author wrote it.)",
-   "branch": "data",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 0,
-    "missed30d": 0
-   },
-   "verdict": "unknown",
-   "startupTokensEst": 28,
-   "staticTokensEst": 420,
-   "summary": {
-    "en": "Explains why a database query is slow.",
-    "ru": "Объясняет, почему запрос к базе медленный."
-   }
-  },
-  {
-   "id": "cli:hook:block-secrets",
-   "kind": "hook",
-   "surface": "cli",
-   "name": "block-secrets",
-   "enabled": true,
-   "origin": "user",
-   "description": "Stops commands that would print keys or passwords. (Raw description from the file, as its author wrote it.)",
-   "branch": "automation",
-   "pack": "user",
-   "usage": {
-    "uses30d": 18,
-    "lifetimeUses": 210,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-16T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "staticTokensEst": 300,
-   "title": {
-    "en": "Secret guard",
-    "ru": "Защита секретов"
-   },
-   "summary": {
-    "en": "Stops commands that would print keys or passwords.",
-    "ru": "Останавливает команды, которые выведут ключи или пароли."
-   }
-  },
-  {
-   "id": "cli:hook:session-log",
-   "kind": "hook",
-   "surface": "cli",
-   "name": "session-log",
-   "enabled": true,
-   "origin": "user",
-   "description": "Appends a line to a log when a session ends. (Raw description from the file, as its author wrote it.)",
-   "branch": "automation",
-   "pack": "user",
-   "usage": {
-    "uses30d": 22,
-    "lifetimeUses": 300,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-15T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "staticTokensEst": 150,
-   "title": {
-    "en": "Session log",
-    "ru": "Журнал сессий"
-   },
-   "summary": {
-    "en": "Appends a line to a log when a session ends.",
-    "ru": "Добавляет строку в журнал при завершении сессии."
-   }
-  },
-  {
-   "id": "cli:scheduled_task:morning-digest",
-   "kind": "scheduled_task",
-   "surface": "cli",
-   "name": "morning-digest",
-   "enabled": true,
-   "origin": "user",
-   "description": "Every morning, summarises what changed overnight. (Raw description from the file, as its author wrote it.)",
-   "branch": "automation",
-   "pack": "user",
-   "usage": {
-    "uses30d": 30,
-    "lifetimeUses": 200,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-14T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "staticTokensEst": 400,
-   "title": {
-    "en": "Morning digest",
-    "ru": "Утренняя сводка"
-   },
-   "summary": {
-    "en": "Every morning, summarises what changed overnight.",
-    "ru": "Каждое утро собирает, что изменилось за ночь."
-   }
-  },
-  {
-   "id": "cli:scheduled_task:weekly-cleanup",
-   "kind": "scheduled_task",
-   "surface": "cli",
-   "name": "weekly-cleanup",
-   "enabled": true,
-   "origin": "user",
-   "description": "Removes old temporary files once a week. (Raw description from the file, as its author wrote it.)",
-   "branch": "automation",
-   "pack": "user",
-   "usage": {
-    "uses30d": 2,
-    "lifetimeUses": 26,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-13T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "staticTokensEst": 260,
-   "title": {
-    "en": "Weekly cleanup",
-    "ru": "Недельная уборка"
-   },
-   "summary": {
-    "en": "Removes old temporary files once a week.",
-    "ru": "Раз в неделю удаляет старые временные файлы."
-   }
-  },
-  {
-   "id": "cli:scheduled_task:backup-check",
-   "kind": "scheduled_task",
-   "surface": "cli",
-   "name": "backup-check",
-   "enabled": false,
-   "origin": "user",
-   "description": "Confirms the latest backup finished. (Raw description from the file, as its author wrote it.)",
-   "branch": "automation",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 9,
-    "missed30d": 0
-   },
-   "verdict": "disabled",
-   "staticTokensEst": 240,
-   "title": {
-    "en": "Backup check",
-    "ru": "Проверка копий"
-   },
-   "summary": {
-    "en": "Confirms the latest backup finished.",
-    "ru": "Проверяет, что последняя резервная копия завершилась."
-   }
-  },
-  {
-   "id": "cli:hook:notify-done",
-   "kind": "hook",
-   "surface": "cli",
-   "name": "notify-done",
-   "enabled": false,
-   "origin": "user",
-   "branch": "automation",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 3,
-    "missed30d": 0
-   },
-   "verdict": "disabled",
-   "staticTokensEst": 120
-  },
-  {
-   "id": "cli:memory:project-notes",
-   "kind": "memory",
-   "surface": "cli",
-   "name": "project-notes",
-   "enabled": true,
-   "origin": "user",
-   "description": "Standing facts about the project the agent should remember. (Raw description from the file, as its author wrote it.)",
-   "branch": "memory",
-   "pack": "user",
-   "usage": {
-    "uses30d": 20,
-    "lifetimeUses": 0,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-10T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 420,
-   "staticTokensEst": 420,
-   "title": {
-    "en": "Project notes",
-    "ru": "Заметки по проекту"
-   },
-   "summary": {
-    "en": "Standing facts about the project the agent should remember.",
-    "ru": "Постоянные факты о проекте, которые агент должен помнить."
-   }
-  },
-  {
-   "id": "cli:memory:preferences",
-   "kind": "memory",
-   "surface": "cli",
-   "name": "preferences",
-   "enabled": true,
-   "origin": "user",
-   "description": "How the owner likes answers: length, tone, format. (Raw description from the file, as its author wrote it.)",
-   "branch": "memory",
-   "pack": "user",
-   "usage": {
-    "uses30d": 25,
-    "lifetimeUses": 0,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-09T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 310,
-   "staticTokensEst": 310,
-   "title": {
-    "en": "Preferences",
-    "ru": "Предпочтения"
-   },
-   "summary": {
-    "en": "How the owner likes answers: length, tone, format.",
-    "ru": "Как владелец любит получать ответы: длина, тон, формат."
-   }
-  },
-  {
-   "id": "cli:instructions:CLAUDE.md",
-   "kind": "instructions",
-   "surface": "cli",
-   "name": "CLAUDE.md",
-   "enabled": true,
-   "origin": "user",
-   "description": "The rules every session starts with. (Raw description from the file, as its author wrote it.)",
-   "branch": "memory",
-   "pack": "user",
-   "usage": {
-    "uses30d": 40,
-    "lifetimeUses": 0,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-08T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 900,
-   "staticTokensEst": 900,
-   "title": {
-    "en": "Global instructions",
-    "ru": "Общие инструкции"
-   },
-   "summary": {
-    "en": "The rules every session starts with.",
-    "ru": "Правила, с которых начинается каждая сессия."
-   }
-  },
-  {
-   "id": "cli:memory:old-decisions",
-   "kind": "memory",
-   "surface": "cli",
-   "name": "old-decisions",
-   "enabled": true,
-   "origin": "user",
-   "description": "Notes on choices made last year. (Raw description from the file, as its author wrote it.)",
-   "branch": "memory",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 0,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 260,
-   "staticTokensEst": 260,
-   "title": {
-    "en": "Old decisions",
-    "ru": "Старые решения"
-   },
-   "summary": {
-    "en": "Notes on choices made last year.",
-    "ru": "Заметки о решениях прошлого года."
-   }
-  },
-  {
-   "id": "cli:skill:hindsight",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "hindsight",
-   "enabled": true,
-   "origin": "hindsight",
-   "description": "Recalls and saves lasting facts across sessions. (Raw description from the file, as its author wrote it.)",
-   "branch": "memory",
-   "pack": "hindsight",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 10,
-    "missed30d": 5
-   },
-   "verdict": "missed",
-   "startupTokensEst": 38,
-   "staticTokensEst": 800,
-   "title": {
-    "en": "Long-term memory",
-    "ru": "Долгая память"
-   },
-   "summary": {
-    "en": "Recalls and saves lasting facts across sessions.",
-    "ru": "Достаёт и сохраняет важные факты между сессиями."
-   }
-  },
-  {
-   "id": "connector:mcp_server:slack",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "slack",
-   "enabled": true,
-   "origin": "slack",
-   "description": "Reads channels and posts messages when asked. (Raw description from the file, as its author wrote it.)",
-   "branch": "communication",
-   "pack": "slack",
-   "usage": {
-    "uses30d": 5,
-    "lifetimeUses": 29,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-14T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 350,
-   "title": {
-    "en": "Slack",
-    "ru": "Slack"
-   },
-   "summary": {
-    "en": "Reads channels and posts messages when asked.",
-    "ru": "Читает каналы и пишет сообщения по просьбе."
-   }
-  },
-  {
-   "id": "connector:mcp_server:gmail",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "gmail",
-   "enabled": true,
-   "origin": "gmail",
-   "description": "Searches mail and drafts replies. (Raw description from the file, as its author wrote it.)",
-   "branch": "communication",
-   "pack": "gmail",
-   "usage": {
-    "uses30d": 2,
-    "lifetimeUses": 21,
-    "missed30d": 1,
-    "lastUsedAt": "2026-11-13T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 330,
-   "title": {
-    "en": "Gmail",
-    "ru": "Gmail"
-   },
-   "summary": {
-    "en": "Searches mail and drafts replies.",
-    "ru": "Ищет письма и готовит ответы."
-   }
-  },
-  {
-   "id": "connector:mcp_server:calendar",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "calendar",
-   "enabled": true,
-   "origin": "calendar",
-   "description": "Reads events and finds free time. (Raw description from the file, as its author wrote it.)",
-   "branch": "communication",
-   "pack": "calendar",
-   "usage": {
-    "uses30d": 1,
-    "lifetimeUses": 13,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-12T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 260,
-   "title": {
-    "en": "Calendar",
-    "ru": "Календарь"
-   },
-   "summary": {
-    "en": "Reads events and finds free time.",
-    "ru": "Читает события и ищет свободное время."
-   }
-  },
-  {
-   "id": "connector:mcp_server:telegram",
-   "kind": "mcp_server",
-   "surface": "connector",
-   "name": "telegram",
-   "enabled": false,
-   "origin": "telegram",
-   "description": "Sends short notices to a chat. (Raw description from the file, as its author wrote it.)",
-   "branch": "communication",
-   "pack": "telegram",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 5,
-    "missed30d": 0
-   },
-   "verdict": "disabled",
-   "startupTokensEst": 200,
-   "title": {
-    "en": "Telegram",
-    "ru": "Telegram"
-   },
-   "summary": {
-    "en": "Sends short notices to a chat.",
-    "ru": "Отправляет короткие уведомления в чат."
-   }
-  },
-  {
-   "id": "cli:skill:budget-split",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "budget-split",
-   "enabled": true,
-   "origin": "user",
-   "description": "Divides a sum between positions under set limits. (Raw description from the file, as its author wrote it.)",
-   "branch": "finance",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 2,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 34,
-   "staticTokensEst": 600,
-   "title": {
-    "en": "Budget split",
-    "ru": "Раздел бюджета"
-   },
-   "summary": {
-    "en": "Divides a sum between positions under set limits.",
-    "ru": "Делит сумму между позициями по заданным лимитам."
-   }
-  },
-  {
-   "id": "cli:skill:invoice-check",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "invoice-check",
-   "enabled": true,
-   "origin": "user",
-   "description": "Compares an invoice against the quote. (Raw description from the file, as its author wrote it.)",
-   "branch": "finance",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 4,
-    "missed30d": 2
-   },
-   "verdict": "missed",
-   "startupTokensEst": 32,
-   "staticTokensEst": 500,
-   "title": {
-    "en": "Invoice check",
-    "ru": "Проверка счетов"
-   },
-   "summary": {
-    "en": "Compares an invoice against the quote.",
-    "ru": "Сверяет счёт со сметой."
-   }
-  },
-  {
-   "id": "synced:skill:price-lookup",
-   "kind": "skill",
-   "surface": "synced",
-   "name": "price-lookup",
-   "enabled": true,
-   "origin": "user",
-   "description": "Fetches a delayed price for one ticker. (Raw description from the file, as its author wrote it.)",
-   "branch": "finance",
-   "pack": "user",
-   "usage": {
-    "uses30d": 1,
-    "lifetimeUses": 6,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-08T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 30,
-   "staticTokensEst": 450,
-   "title": {
-    "en": "Price lookup",
-    "ru": "Поиск цен"
-   },
-   "summary": {
-    "en": "Fetches a delayed price for one ticker.",
-    "ru": "Получает отложенную цену по одному тикеру."
-   }
-  },
-  {
-   "id": "cli:plugin:superpowers@marketplace",
-   "kind": "plugin",
-   "surface": "cli",
-   "name": "superpowers@marketplace",
-   "enabled": true,
-   "origin": "user",
-   "description": "A bundle of working habits: plans, tests, reviews. (Raw description from the file, as its author wrote it.)",
-   "branch": "system",
-   "pack": "user",
-   "usage": {
-    "uses30d": 20,
-    "lifetimeUses": 0,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-16T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "title": {
-    "en": "Superpowers",
-    "ru": "Superpowers"
-   },
-   "summary": {
-    "en": "A bundle of working habits: plans, tests, reviews.",
-    "ru": "Набор рабочих привычек: планы, тесты, ревью."
-   },
-   "version": "1.4.0"
-  },
-  {
-   "id": "cli:plugin:impeccable@marketplace",
-   "kind": "plugin",
-   "surface": "cli",
-   "name": "impeccable@marketplace",
-   "enabled": true,
-   "origin": "user",
-   "description": "A bundle of interface design skills. (Raw description from the file, as its author wrote it.)",
-   "branch": "system",
-   "pack": "user",
-   "usage": {
-    "uses30d": 6,
-    "lifetimeUses": 0,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-15T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "title": {
-    "en": "Impeccable",
-    "ru": "Impeccable"
-   },
-   "summary": {
-    "en": "A bundle of interface design skills.",
-    "ru": "Набор навыков по дизайну интерфейсов."
-   },
-   "version": "4.8.0",
-   "update": {
-    "installed": "4.8.0",
-    "latest": "4.9.1"
-   }
-  },
-  {
-   "id": "cli:plugin:context-mode@marketplace",
-   "kind": "plugin",
-   "surface": "cli",
-   "name": "context-mode@marketplace",
-   "enabled": true,
-   "origin": "user",
-   "description": "Keeps long tool output out of the conversation. (Raw description from the file, as its author wrote it.)",
-   "branch": "system",
-   "pack": "user",
-   "usage": {
-    "uses30d": 15,
-    "lifetimeUses": 0,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-14T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "title": {
-    "en": "Context mode",
-    "ru": "Экономия контекста"
-   },
-   "summary": {
-    "en": "Keeps long tool output out of the conversation.",
-    "ru": "Не пускает длинный вывод инструментов в разговор."
-   },
-   "version": "1.1.0"
-  },
-  {
-   "id": "cli:mcp_server:filesystem",
-   "kind": "mcp_server",
-   "surface": "cli",
-   "name": "filesystem",
-   "enabled": true,
-   "origin": "user",
-   "description": "Lets the agent read and write files in chosen folders. (Raw description from the file, as its author wrote it.)",
-   "branch": "system",
-   "pack": "user",
-   "usage": {
-    "uses30d": 30,
-    "lifetimeUses": 500,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-13T12:00:00.000Z"
-   },
-   "verdict": "active",
-   "startupTokensEst": 240,
-   "title": {
-    "en": "Files",
-    "ru": "Файлы"
-   },
-   "summary": {
-    "en": "Lets the agent read and write files in chosen folders.",
-    "ru": "Даёт агенту читать и писать файлы в выбранных папках."
-   }
-  },
-  {
-   "id": "cli:mcp_server:browser",
-   "kind": "mcp_server",
-   "surface": "cli",
-   "name": "browser",
-   "enabled": true,
-   "origin": "user",
-   "description": "Opens pages and reads them like a person would. (Raw description from the file, as its author wrote it.)",
-   "branch": "system",
-   "pack": "user",
-   "usage": {
-    "uses30d": 2,
-    "lifetimeUses": 16,
-    "missed30d": 0,
-    "lastUsedAt": "2026-11-12T12:00:00.000Z"
-   },
-   "verdict": "rare",
-   "startupTokensEst": 520,
-   "title": {
-    "en": "Browser",
-    "ru": "Браузер"
-   },
-   "summary": {
-    "en": "Opens pages and reads them like a person would.",
-    "ru": "Открывает страницы и читает их как человек."
-   }
-  },
-  {
-   "id": "cli:skill:misc-helper",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "misc-helper",
-   "enabled": true,
-   "origin": "user",
-   "branch": "other",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 0,
-    "missed30d": 0
-   },
-   "verdict": "unknown",
-   "startupTokensEst": 22,
-   "staticTokensEst": 200
-  },
-  {
-   "id": "cli:skill:scratch-ideas",
-   "kind": "skill",
-   "surface": "cli",
-   "name": "scratch-ideas",
-   "enabled": true,
-   "origin": "user",
-   "description": "Holds half-finished ideas to revisit. (Raw description from the file, as its author wrote it.)",
-   "branch": "other",
-   "pack": "user",
-   "usage": {
-    "uses30d": 0,
-    "lifetimeUses": 1,
-    "missed30d": 0
-   },
-   "verdict": "asleep",
-   "startupTokensEst": 20,
-   "staticTokensEst": 180,
-   "summary": {
-    "en": "Holds half-finished ideas to revisit."
-   }
+  "generatedAt": "2026-11-16T12:00:00.000Z",
+  "usageSource": "transcripts",
+  "enriched": true,
+  "sessions": 142,
+  "cards": [
+    {
+      "id": "cli:skill:superpowers:test-driven-development",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "superpowers:test-driven-development",
+      "enabled": true,
+      "origin": "superpowers",
+      "description": "Writes a failing test before the code, then makes it pass. Used for every new feature or bug fix. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "superpowers",
+      "usage": {
+        "uses30d": 14,
+        "lifetimeUses": 120,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-16T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 60,
+      "staticTokensEst": 1900,
+      "title": {
+        "en": "Test-first coding",
+        "ru": "Сначала тесты"
+      },
+      "summary": {
+        "en": "Writes a failing test before the code, then makes it pass. Used for every new feature or bug fix.",
+        "ru": "Сначала пишет падающий тест, потом код. Применяется для каждой новой функции и исправления."
+      }
+    },
+    {
+      "id": "cli:skill:superpowers:systematic-debugging",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "superpowers:systematic-debugging",
+      "enabled": true,
+      "origin": "superpowers",
+      "description": "Walks through a bug step by step before proposing a fix. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "superpowers",
+      "usage": {
+        "uses30d": 9,
+        "lifetimeUses": 64,
+        "missed30d": 1,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 55,
+      "staticTokensEst": 1500,
+      "title": {
+        "en": "Methodical debugging",
+        "ru": "Системная отладка"
+      },
+      "summary": {
+        "en": "Walks through a bug step by step before proposing a fix.",
+        "ru": "Разбирает ошибку по шагам, прежде чем предлагать исправление."
+      }
+    },
+    {
+      "id": "cli:skill:superpowers:writing-plans",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "superpowers:writing-plans",
+      "enabled": true,
+      "origin": "superpowers",
+      "description": "Turns a spec into a step-by-step plan before any code is touched. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "superpowers",
+      "usage": {
+        "uses30d": 2,
+        "lifetimeUses": 31,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-14T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 50,
+      "staticTokensEst": 1400,
+      "title": {
+        "en": "Plan writer",
+        "ru": "Составитель планов"
+      },
+      "summary": {
+        "en": "Turns a spec into a step-by-step plan before any code is touched.",
+        "ru": "Превращает спецификацию в пошаговый план до начала работы с кодом."
+      }
+    },
+    {
+      "id": "cli:skill:superpowers:executing-plans",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "superpowers:executing-plans",
+      "enabled": true,
+      "origin": "superpowers",
+      "description": "Follows a written plan task by task and checks each one. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "superpowers",
+      "usage": {
+        "uses30d": 1,
+        "lifetimeUses": 18,
+        "missed30d": 2,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 48,
+      "staticTokensEst": 1300,
+      "title": {
+        "en": "Plan runner",
+        "ru": "Исполнитель планов"
+      },
+      "summary": {
+        "en": "Follows a written plan task by task and checks each one.",
+        "ru": "Выполняет готовый план задача за задачей и проверяет каждую."
+      }
+    },
+    {
+      "id": "cli:skill:superpowers:finishing-a-development-branch",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "superpowers:finishing-a-development-branch",
+      "enabled": true,
+      "origin": "superpowers",
+      "description": "Decides how to merge, review or discard finished work. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "superpowers",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 5,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 52,
+      "staticTokensEst": 900,
+      "title": {
+        "en": "Branch wrap-up",
+        "ru": "Завершение ветки"
+      },
+      "summary": {
+        "en": "Decides how to merge, review or discard finished work.",
+        "ru": "Помогает решить, как слить, проверить или отбросить готовую работу."
+      }
+    },
+    {
+      "id": "cli:skill:superpowers:using-git-worktrees",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "superpowers:using-git-worktrees",
+      "enabled": true,
+      "origin": "superpowers",
+      "description": "Creates a separate working copy so experiments do not touch the main one. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "superpowers",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 12,
+        "missed30d": 4
+      },
+      "verdict": "missed",
+      "startupTokensEst": 47,
+      "staticTokensEst": 1100,
+      "title": {
+        "en": "Isolated workspaces",
+        "ru": "Изолированные копии"
+      },
+      "summary": {
+        "en": "Creates a separate working copy so experiments do not touch the main one.",
+        "ru": "Создаёт отдельную рабочую копию, чтобы эксперименты не трогали основную."
+      }
+    },
+    {
+      "id": "cli:skill:superpowers:requesting-code-review",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "superpowers:requesting-code-review",
+      "enabled": true,
+      "origin": "superpowers",
+      "description": "Prepares a change for review and asks for feedback. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "superpowers",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 3,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 45,
+      "staticTokensEst": 800,
+      "title": {
+        "en": "Ask for review",
+        "ru": "Запрос ревью"
+      },
+      "summary": {
+        "en": "Prepares a change for review and asks for feedback.",
+        "ru": "Готовит изменение к ревью и просит обратную связь."
+      }
+    },
+    {
+      "id": "cli:skill:verify-build",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "verify-build",
+      "enabled": true,
+      "origin": "user",
+      "description": "Runs the build and tests and reports what broke. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "user",
+      "usage": {
+        "uses30d": 7,
+        "lifetimeUses": 40,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-09T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 35,
+      "staticTokensEst": 700,
+      "title": {
+        "en": "Build checker",
+        "ru": "Проверка сборки"
+      },
+      "summary": {
+        "en": "Runs the build and tests and reports what broke.",
+        "ru": "Запускает сборку и тесты и сообщает, что сломалось."
+      }
+    },
+    {
+      "id": "cli:skill:commit-style",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "commit-style",
+      "enabled": true,
+      "origin": "user",
+      "branch": "code",
+      "pack": "user",
+      "usage": {
+        "uses30d": 4,
+        "lifetimeUses": 22,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-08T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 28,
+      "staticTokensEst": 500
+    },
+    {
+      "id": "cli:agent:code-reviewer",
+      "kind": "agent",
+      "surface": "cli",
+      "name": "code-reviewer",
+      "enabled": true,
+      "origin": "user",
+      "description": "A helper agent that reads a diff and lists problems. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "user",
+      "usage": {
+        "uses30d": 2,
+        "lifetimeUses": 15,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-16T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 40,
+      "staticTokensEst": 600,
+      "title": {
+        "en": "Code reviewer",
+        "ru": "Ревьюер кода"
+      },
+      "summary": {
+        "en": "A helper agent that reads a diff and lists problems.",
+        "ru": "Вспомогательный агент: читает изменения и перечисляет проблемы."
+      }
+    },
+    {
+      "id": "connector:mcp_server:github",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "github",
+      "enabled": true,
+      "origin": "github",
+      "description": "Lets the agent read issues and pull requests and open new ones. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "github",
+      "usage": {
+        "uses30d": 11,
+        "lifetimeUses": 90,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 320,
+      "title": {
+        "en": "GitHub",
+        "ru": "GitHub"
+      },
+      "summary": {
+        "en": "Lets the agent read issues and pull requests and open new ones.",
+        "ru": "Позволяет агенту читать задачи и запросы на слияние и создавать новые."
+      },
+      "inferred": true
+    },
+    {
+      "id": "cli:hook:format-on-save",
+      "kind": "hook",
+      "surface": "cli",
+      "name": "format-on-save",
+      "enabled": true,
+      "origin": "user",
+      "description": "Runs the code formatter after every file edit. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "user",
+      "usage": {
+        "uses30d": 30,
+        "lifetimeUses": 400,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-14T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "staticTokensEst": 200,
+      "title": {
+        "en": "Format on save",
+        "ru": "Форматирование при сохранении"
+      },
+      "summary": {
+        "en": "Runs the code formatter after every file edit.",
+        "ru": "Запускает форматтер после каждой правки файла."
+      }
+    },
+    {
+      "id": "cli:skill:impeccable:critique",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "impeccable:critique",
+      "enabled": true,
+      "origin": "impeccable",
+      "description": "Reviews an interface for hierarchy, clarity and polish. (Raw description from the file, as its author wrote it.)",
+      "branch": "design",
+      "pack": "impeccable",
+      "usage": {
+        "uses30d": 5,
+        "lifetimeUses": 28,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 70,
+      "staticTokensEst": 2400,
+      "title": {
+        "en": "Design critique",
+        "ru": "Разбор дизайна"
+      },
+      "summary": {
+        "en": "Reviews an interface for hierarchy, clarity and polish.",
+        "ru": "Оценивает интерфейс: иерархию, ясность, аккуратность."
+      }
+    },
+    {
+      "id": "cli:skill:impeccable:polish",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "impeccable:polish",
+      "enabled": true,
+      "origin": "impeccable",
+      "description": "A last pass over spacing, type and states before shipping. (Raw description from the file, as its author wrote it.)",
+      "branch": "design",
+      "pack": "impeccable",
+      "usage": {
+        "uses30d": 1,
+        "lifetimeUses": 9,
+        "missed30d": 1,
+        "lastUsedAt": "2026-11-12T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 60,
+      "staticTokensEst": 1800,
+      "title": {
+        "en": "Final polish",
+        "ru": "Финальная доводка"
+      },
+      "summary": {
+        "en": "A last pass over spacing, type and states before shipping.",
+        "ru": "Последняя проверка отступов, шрифтов и состояний перед выпуском."
+      }
+    },
+    {
+      "id": "cli:skill:impeccable:adapt",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "impeccable:adapt",
+      "enabled": true,
+      "origin": "impeccable",
+      "description": "Adapts a layout to phones, tablets and desktop. (Raw description from the file, as its author wrote it.)",
+      "branch": "design",
+      "pack": "impeccable",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 4,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 55,
+      "staticTokensEst": 1500,
+      "title": {
+        "en": "Device fit",
+        "ru": "Подгонка под устройства"
+      },
+      "summary": {
+        "en": "Adapts a layout to phones, tablets and desktop.",
+        "ru": "Адаптирует макет под телефон, планшет и компьютер."
+      }
+    },
+    {
+      "id": "cli:skill:impeccable:animate",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "impeccable:animate",
+      "enabled": true,
+      "origin": "impeccable",
+      "description": "Adds small, purposeful animations. (Raw description from the file, as its author wrote it.)",
+      "branch": "design",
+      "pack": "impeccable",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 2,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 50,
+      "staticTokensEst": 1200,
+      "title": {
+        "en": "Motion",
+        "ru": "Анимация"
+      },
+      "summary": {
+        "en": "Adds small, purposeful animations.",
+        "ru": "Добавляет небольшие осмысленные анимации."
+      }
+    },
+    {
+      "id": "desktop:skill:logo-sketch",
+      "kind": "skill",
+      "surface": "desktop",
+      "name": "logo-sketch",
+      "enabled": true,
+      "origin": "user",
+      "description": "Drafts simple logo ideas as vector shapes. (Raw description from the file, as its author wrote it.)",
+      "branch": "design",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 1,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 30,
+      "staticTokensEst": 400,
+      "title": {
+        "en": "Logo sketcher",
+        "ru": "Эскизы логотипов"
+      },
+      "summary": {
+        "en": "Drafts simple logo ideas as vector shapes.",
+        "ru": "Набрасывает идеи логотипов в виде векторных фигур."
+      }
+    },
+    {
+      "id": "connector:mcp_server:figma",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "figma",
+      "enabled": true,
+      "origin": "figma",
+      "description": "Reads frames and styles from Figma files. (Raw description from the file, as its author wrote it.)",
+      "branch": "design",
+      "pack": "figma",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 6,
+        "missed30d": 3
+      },
+      "verdict": "missed",
+      "startupTokensEst": 410,
+      "title": {
+        "en": "Figma",
+        "ru": "Figma"
+      },
+      "summary": {
+        "en": "Reads frames and styles from Figma files.",
+        "ru": "Читает макеты и стили из файлов Figma."
+      }
+    },
+    {
+      "id": "synced:skill:color-palette",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "color-palette",
+      "enabled": true,
+      "origin": "user",
+      "branch": "design",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 0,
+        "missed30d": 0
+      },
+      "verdict": "unknown",
+      "startupTokensEst": 25,
+      "staticTokensEst": 300,
+      "summary": {
+        "en": "Picks a colour palette from a described mood.",
+        "ru": "Подбирает палитру по описанию настроения."
+      }
+    },
+    {
+      "id": "cli:skill:deep-research",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "deep-research",
+      "enabled": true,
+      "origin": "user",
+      "description": "Runs many searches and reads sources, then writes a cited summary. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "user",
+      "usage": {
+        "uses30d": 8,
+        "lifetimeUses": 52,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 45,
+      "staticTokensEst": 1600,
+      "title": {
+        "en": "Deep research",
+        "ru": "Глубокий поиск"
+      },
+      "summary": {
+        "en": "Runs many searches and reads sources, then writes a cited summary.",
+        "ru": "Делает много поисков, читает источники и пишет краткий вывод со ссылками."
+      }
+    },
+    {
+      "id": "cli:skill:paper-reader",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "paper-reader",
+      "enabled": true,
+      "origin": "user",
+      "description": "Reads a scientific paper and explains the main result. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "user",
+      "usage": {
+        "uses30d": 2,
+        "lifetimeUses": 14,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-14T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 35,
+      "staticTokensEst": 900,
+      "title": {
+        "en": "Paper reader",
+        "ru": "Чтение статей"
+      },
+      "summary": {
+        "en": "Reads a scientific paper and explains the main result.",
+        "ru": "Читает научную статью и объясняет главный результат."
+      }
+    },
+    {
+      "id": "cli:skill:exa:search",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "exa:search",
+      "enabled": true,
+      "origin": "exa",
+      "description": "Finds pages by meaning, not only by keywords. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "exa",
+      "usage": {
+        "uses30d": 12,
+        "lifetimeUses": 77,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 40,
+      "staticTokensEst": 700,
+      "title": {
+        "en": "Web search",
+        "ru": "Поиск в сети"
+      },
+      "summary": {
+        "en": "Finds pages by meaning, not only by keywords.",
+        "ru": "Находит страницы по смыслу, а не только по словам."
+      }
+    },
+    {
+      "id": "connector:mcp_server:exa",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "exa",
+      "enabled": true,
+      "origin": "exa",
+      "description": "Search and page reading through the Exa service. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "exa",
+      "usage": {
+        "uses30d": 10,
+        "lifetimeUses": 70,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-12T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 380,
+      "title": {
+        "en": "Exa",
+        "ru": "Exa"
+      },
+      "summary": {
+        "en": "Search and page reading through the Exa service.",
+        "ru": "Поиск и чтение страниц через сервис Exa."
+      },
+      "update": {
+        "installed": "0.4.1",
+        "latest": "0.5.0"
+      }
+    },
+    {
+      "id": "desktop:skill:news-brief",
+      "kind": "skill",
+      "surface": "desktop",
+      "name": "news-brief",
+      "enabled": true,
+      "origin": "user",
+      "description": "Collects the day's headlines on chosen topics. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 6,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 30,
+      "staticTokensEst": 500,
+      "title": {
+        "en": "News brief",
+        "ru": "Новостная сводка"
+      },
+      "summary": {
+        "en": "Collects the day's headlines on chosen topics.",
+        "ru": "Собирает заголовки дня по выбранным темам."
+      }
+    },
+    {
+      "id": "synced:agent:fact-checker",
+      "kind": "agent",
+      "surface": "synced",
+      "name": "fact-checker",
+      "enabled": true,
+      "origin": "user",
+      "description": "A helper agent that checks claims against sources. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 3,
+        "missed30d": 2
+      },
+      "verdict": "missed",
+      "startupTokensEst": 38,
+      "staticTokensEst": 500,
+      "title": {
+        "en": "Fact checker",
+        "ru": "Проверка фактов"
+      },
+      "summary": {
+        "en": "A helper agent that checks claims against sources.",
+        "ru": "Агент, который сверяет утверждения с источниками."
+      }
+    },
+    {
+      "id": "cli:skill:humanizer",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "humanizer",
+      "enabled": true,
+      "origin": "user",
+      "description": "Rewrites stiff, machine-sounding text so it reads naturally. (Raw description from the file, as its author wrote it.)",
+      "branch": "writing",
+      "pack": "user",
+      "usage": {
+        "uses30d": 6,
+        "lifetimeUses": 33,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-09T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 42,
+      "staticTokensEst": 1100,
+      "title": {
+        "en": "Humanizer",
+        "ru": "Очеловечивание текста"
+      },
+      "summary": {
+        "en": "Rewrites stiff, machine-sounding text so it reads naturally.",
+        "ru": "Переписывает деревянный текст так, чтобы он звучал естественно."
+      }
+    },
+    {
+      "id": "cli:skill:release-notes",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "release-notes",
+      "enabled": true,
+      "origin": "user",
+      "description": "Turns a list of commits into readable release notes. (Raw description from the file, as its author wrote it.)",
+      "branch": "writing",
+      "pack": "user",
+      "usage": {
+        "uses30d": 1,
+        "lifetimeUses": 8,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-08T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 30,
+      "staticTokensEst": 600,
+      "title": {
+        "en": "Release notes",
+        "ru": "Заметки о релизе"
+      },
+      "summary": {
+        "en": "Turns a list of commits into readable release notes.",
+        "ru": "Превращает список коммитов в понятные заметки о релизе."
+      }
+    },
+    {
+      "id": "desktop:skill:docx",
+      "kind": "skill",
+      "surface": "desktop",
+      "name": "docx",
+      "enabled": true,
+      "origin": "user",
+      "description": "Creates and edits .docx files. (Raw description from the file, as its author wrote it.)",
+      "branch": "writing",
+      "pack": "user",
+      "usage": {
+        "uses30d": 2,
+        "lifetimeUses": 17,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-16T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 45,
+      "staticTokensEst": 2200,
+      "title": {
+        "en": "Word documents",
+        "ru": "Документы Word"
+      },
+      "summary": {
+        "en": "Creates and edits .docx files.",
+        "ru": "Создаёт и редактирует файлы .docx."
+      }
+    },
+    {
+      "id": "desktop:skill:pdf",
+      "kind": "skill",
+      "surface": "desktop",
+      "name": "pdf",
+      "enabled": true,
+      "origin": "user",
+      "description": "Reads, fills and builds PDF files. (Raw description from the file, as its author wrote it.)",
+      "branch": "writing",
+      "pack": "user",
+      "usage": {
+        "uses30d": 3,
+        "lifetimeUses": 25,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 45,
+      "staticTokensEst": 2000,
+      "title": {
+        "en": "PDF files",
+        "ru": "Файлы PDF"
+      },
+      "summary": {
+        "en": "Reads, fills and builds PDF files.",
+        "ru": "Читает, заполняет и собирает PDF-файлы."
+      }
+    },
+    {
+      "id": "synced:skill:email-drafts",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "email-drafts",
+      "enabled": true,
+      "origin": "user",
+      "description": "Drafts replies in the owner's tone; never sends. (Raw description from the file, as its author wrote it.)",
+      "branch": "writing",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 4,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 28,
+      "staticTokensEst": 400,
+      "title": {
+        "en": "Email drafts",
+        "ru": "Черновики писем"
+      },
+      "summary": {
+        "en": "Drafts replies in the owner's tone; never sends.",
+        "ru": "Готовит ответы в манере владельца; ничего не отправляет."
+      }
+    },
+    {
+      "id": "cli:skill:meeting-notes",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "meeting-notes",
+      "enabled": true,
+      "origin": "user",
+      "description": "Cleans up raw notes into decisions and action items. (Raw description from the file, as its author wrote it.)",
+      "branch": "writing",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 2,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 26,
+      "staticTokensEst": 350,
+      "title": {
+        "en": "Meeting notes"
+      },
+      "summary": {
+        "en": "Cleans up raw notes into decisions and action items."
+      }
+    },
+    {
+      "id": "cli:skill:xlsx",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "xlsx",
+      "enabled": true,
+      "origin": "user",
+      "description": "Reads and builds spreadsheet files with formulas. (Raw description from the file, as its author wrote it.)",
+      "branch": "data",
+      "pack": "user",
+      "usage": {
+        "uses30d": 1,
+        "lifetimeUses": 11,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-12T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 48,
+      "staticTokensEst": 1900,
+      "title": {
+        "en": "Spreadsheets",
+        "ru": "Таблицы"
+      },
+      "summary": {
+        "en": "Reads and builds spreadsheet files with formulas.",
+        "ru": "Читает и собирает файлы таблиц с формулами."
+      }
+    },
+    {
+      "id": "cli:skill:csv-clean",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "csv-clean",
+      "enabled": true,
+      "origin": "user",
+      "description": "Fixes broken rows and headers in table files. (Raw description from the file, as its author wrote it.)",
+      "branch": "data",
+      "pack": "user",
+      "usage": {
+        "uses30d": 3,
+        "lifetimeUses": 19,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-11T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 30,
+      "staticTokensEst": 500,
+      "title": {
+        "en": "CSV cleaner",
+        "ru": "Чистка CSV"
+      },
+      "summary": {
+        "en": "Fixes broken rows and headers in table files.",
+        "ru": "Исправляет битые строки и заголовки в табличных файлах."
+      }
+    },
+    {
+      "id": "cli:skill:chart-maker",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "chart-maker",
+      "enabled": true,
+      "origin": "user",
+      "description": "Draws clear charts from a table of numbers. (Raw description from the file, as its author wrote it.)",
+      "branch": "data",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 7,
+        "missed30d": 3
+      },
+      "verdict": "missed",
+      "startupTokensEst": 35,
+      "staticTokensEst": 700,
+      "title": {
+        "en": "Chart maker",
+        "ru": "Построитель графиков"
+      },
+      "summary": {
+        "en": "Draws clear charts from a table of numbers.",
+        "ru": "Рисует понятные графики по таблице чисел."
+      }
+    },
+    {
+      "id": "connector:mcp_server:postgres",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "postgres",
+      "enabled": true,
+      "origin": "postgres",
+      "description": "Runs read-only questions against a database. (Raw description from the file, as its author wrote it.)",
+      "branch": "data",
+      "pack": "postgres",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 4,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 290,
+      "title": {
+        "en": "Postgres",
+        "ru": "Postgres"
+      },
+      "summary": {
+        "en": "Runs read-only questions against a database.",
+        "ru": "Выполняет запросы только на чтение к базе данных."
+      }
+    },
+    {
+      "id": "cli:skill:sql-explain",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "sql-explain",
+      "enabled": true,
+      "origin": "user",
+      "description": "Explains why a database query is slow. (Raw description from the file, as its author wrote it.)",
+      "branch": "data",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 0,
+        "missed30d": 0
+      },
+      "verdict": "unknown",
+      "startupTokensEst": 28,
+      "staticTokensEst": 420,
+      "summary": {
+        "en": "Explains why a database query is slow.",
+        "ru": "Объясняет, почему запрос к базе медленный."
+      }
+    },
+    {
+      "id": "cli:hook:block-secrets",
+      "kind": "hook",
+      "surface": "cli",
+      "name": "block-secrets",
+      "enabled": true,
+      "origin": "user",
+      "description": "Stops commands that would print keys or passwords. (Raw description from the file, as its author wrote it.)",
+      "branch": "automation",
+      "pack": "user",
+      "usage": {
+        "uses30d": 18,
+        "lifetimeUses": 210,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-16T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "staticTokensEst": 300,
+      "title": {
+        "en": "Secret guard",
+        "ru": "Защита секретов"
+      },
+      "summary": {
+        "en": "Stops commands that would print keys or passwords.",
+        "ru": "Останавливает команды, которые выведут ключи или пароли."
+      }
+    },
+    {
+      "id": "cli:hook:session-log",
+      "kind": "hook",
+      "surface": "cli",
+      "name": "session-log",
+      "enabled": true,
+      "origin": "user",
+      "description": "Appends a line to a log when a session ends. (Raw description from the file, as its author wrote it.)",
+      "branch": "automation",
+      "pack": "user",
+      "usage": {
+        "uses30d": 22,
+        "lifetimeUses": 300,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "staticTokensEst": 150,
+      "title": {
+        "en": "Session log",
+        "ru": "Журнал сессий"
+      },
+      "summary": {
+        "en": "Appends a line to a log when a session ends.",
+        "ru": "Добавляет строку в журнал при завершении сессии."
+      }
+    },
+    {
+      "id": "cli:scheduled_task:morning-digest",
+      "kind": "scheduled_task",
+      "surface": "cli",
+      "name": "morning-digest",
+      "enabled": true,
+      "origin": "user",
+      "description": "Every morning, summarises what changed overnight. (Raw description from the file, as its author wrote it.)",
+      "branch": "automation",
+      "pack": "user",
+      "usage": {
+        "uses30d": 30,
+        "lifetimeUses": 200,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-14T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "staticTokensEst": 400,
+      "title": {
+        "en": "Morning digest",
+        "ru": "Утренняя сводка"
+      },
+      "summary": {
+        "en": "Every morning, summarises what changed overnight.",
+        "ru": "Каждое утро собирает, что изменилось за ночь."
+      }
+    },
+    {
+      "id": "cli:scheduled_task:weekly-cleanup",
+      "kind": "scheduled_task",
+      "surface": "cli",
+      "name": "weekly-cleanup",
+      "enabled": true,
+      "origin": "user",
+      "description": "Removes old temporary files once a week. (Raw description from the file, as its author wrote it.)",
+      "branch": "automation",
+      "pack": "user",
+      "usage": {
+        "uses30d": 2,
+        "lifetimeUses": 26,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "staticTokensEst": 260,
+      "title": {
+        "en": "Weekly cleanup",
+        "ru": "Недельная уборка"
+      },
+      "summary": {
+        "en": "Removes old temporary files once a week.",
+        "ru": "Раз в неделю удаляет старые временные файлы."
+      }
+    },
+    {
+      "id": "cli:scheduled_task:backup-check",
+      "kind": "scheduled_task",
+      "surface": "cli",
+      "name": "backup-check",
+      "enabled": false,
+      "origin": "user",
+      "description": "Confirms the latest backup finished. (Raw description from the file, as its author wrote it.)",
+      "branch": "automation",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 9,
+        "missed30d": 0
+      },
+      "verdict": "disabled",
+      "staticTokensEst": 240,
+      "title": {
+        "en": "Backup check",
+        "ru": "Проверка копий"
+      },
+      "summary": {
+        "en": "Confirms the latest backup finished.",
+        "ru": "Проверяет, что последняя резервная копия завершилась."
+      }
+    },
+    {
+      "id": "cli:hook:notify-done",
+      "kind": "hook",
+      "surface": "cli",
+      "name": "notify-done",
+      "enabled": false,
+      "origin": "user",
+      "branch": "automation",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 3,
+        "missed30d": 0
+      },
+      "verdict": "disabled",
+      "staticTokensEst": 120
+    },
+    {
+      "id": "cli:memory:project-notes",
+      "kind": "memory",
+      "surface": "cli",
+      "name": "project-notes",
+      "enabled": true,
+      "origin": "user",
+      "description": "Standing facts about the project the agent should remember. (Raw description from the file, as its author wrote it.)",
+      "branch": "memory",
+      "pack": "user",
+      "usage": {
+        "uses30d": 20,
+        "lifetimeUses": 0,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-10T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 420,
+      "staticTokensEst": 420,
+      "title": {
+        "en": "Project notes",
+        "ru": "Заметки по проекту"
+      },
+      "summary": {
+        "en": "Standing facts about the project the agent should remember.",
+        "ru": "Постоянные факты о проекте, которые агент должен помнить."
+      }
+    },
+    {
+      "id": "cli:memory:preferences",
+      "kind": "memory",
+      "surface": "cli",
+      "name": "preferences",
+      "enabled": true,
+      "origin": "user",
+      "description": "How the owner likes answers: length, tone, format. (Raw description from the file, as its author wrote it.)",
+      "branch": "memory",
+      "pack": "user",
+      "usage": {
+        "uses30d": 25,
+        "lifetimeUses": 0,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-09T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 310,
+      "staticTokensEst": 310,
+      "title": {
+        "en": "Preferences",
+        "ru": "Предпочтения"
+      },
+      "summary": {
+        "en": "How the owner likes answers: length, tone, format.",
+        "ru": "Как владелец любит получать ответы: длина, тон, формат."
+      }
+    },
+    {
+      "id": "cli:instructions:CLAUDE.md",
+      "kind": "instructions",
+      "surface": "cli",
+      "name": "CLAUDE.md",
+      "enabled": true,
+      "origin": "user",
+      "description": "The rules every session starts with. (Raw description from the file, as its author wrote it.)",
+      "branch": "memory",
+      "pack": "user",
+      "usage": {
+        "uses30d": 40,
+        "lifetimeUses": 0,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-08T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 900,
+      "staticTokensEst": 900,
+      "title": {
+        "en": "Global instructions",
+        "ru": "Общие инструкции"
+      },
+      "summary": {
+        "en": "The rules every session starts with.",
+        "ru": "Правила, с которых начинается каждая сессия."
+      }
+    },
+    {
+      "id": "cli:memory:old-decisions",
+      "kind": "memory",
+      "surface": "cli",
+      "name": "old-decisions",
+      "enabled": true,
+      "origin": "user",
+      "description": "Notes on choices made last year. (Raw description from the file, as its author wrote it.)",
+      "branch": "memory",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 0,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 260,
+      "staticTokensEst": 260,
+      "title": {
+        "en": "Old decisions",
+        "ru": "Старые решения"
+      },
+      "summary": {
+        "en": "Notes on choices made last year.",
+        "ru": "Заметки о решениях прошлого года."
+      }
+    },
+    {
+      "id": "cli:skill:hindsight",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "hindsight",
+      "enabled": true,
+      "origin": "hindsight",
+      "description": "Recalls and saves lasting facts across sessions. (Raw description from the file, as its author wrote it.)",
+      "branch": "memory",
+      "pack": "hindsight",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 10,
+        "missed30d": 5
+      },
+      "verdict": "missed",
+      "startupTokensEst": 38,
+      "staticTokensEst": 800,
+      "title": {
+        "en": "Long-term memory",
+        "ru": "Долгая память"
+      },
+      "summary": {
+        "en": "Recalls and saves lasting facts across sessions.",
+        "ru": "Достаёт и сохраняет важные факты между сессиями."
+      }
+    },
+    {
+      "id": "connector:mcp_server:slack",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "slack",
+      "enabled": true,
+      "origin": "slack",
+      "description": "Reads channels and posts messages when asked. (Raw description from the file, as its author wrote it.)",
+      "branch": "communication",
+      "pack": "slack",
+      "usage": {
+        "uses30d": 5,
+        "lifetimeUses": 29,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-14T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 350,
+      "title": {
+        "en": "Slack",
+        "ru": "Slack"
+      },
+      "summary": {
+        "en": "Reads channels and posts messages when asked.",
+        "ru": "Читает каналы и пишет сообщения по просьбе."
+      }
+    },
+    {
+      "id": "connector:mcp_server:gmail",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "gmail",
+      "enabled": true,
+      "origin": "gmail",
+      "description": "Searches mail and drafts replies. (Raw description from the file, as its author wrote it.)",
+      "branch": "communication",
+      "pack": "gmail",
+      "usage": {
+        "uses30d": 2,
+        "lifetimeUses": 21,
+        "missed30d": 1,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 330,
+      "title": {
+        "en": "Gmail",
+        "ru": "Gmail"
+      },
+      "summary": {
+        "en": "Searches mail and drafts replies.",
+        "ru": "Ищет письма и готовит ответы."
+      }
+    },
+    {
+      "id": "connector:mcp_server:calendar",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "calendar",
+      "enabled": true,
+      "origin": "calendar",
+      "description": "Reads events and finds free time. (Raw description from the file, as its author wrote it.)",
+      "branch": "communication",
+      "pack": "calendar",
+      "usage": {
+        "uses30d": 1,
+        "lifetimeUses": 13,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-12T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 260,
+      "title": {
+        "en": "Calendar",
+        "ru": "Календарь"
+      },
+      "summary": {
+        "en": "Reads events and finds free time.",
+        "ru": "Читает события и ищет свободное время."
+      }
+    },
+    {
+      "id": "connector:mcp_server:telegram",
+      "kind": "mcp_server",
+      "surface": "connector",
+      "name": "telegram",
+      "enabled": false,
+      "origin": "telegram",
+      "description": "Sends short notices to a chat. (Raw description from the file, as its author wrote it.)",
+      "branch": "communication",
+      "pack": "telegram",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 5,
+        "missed30d": 0
+      },
+      "verdict": "disabled",
+      "startupTokensEst": 200,
+      "title": {
+        "en": "Telegram",
+        "ru": "Telegram"
+      },
+      "summary": {
+        "en": "Sends short notices to a chat.",
+        "ru": "Отправляет короткие уведомления в чат."
+      }
+    },
+    {
+      "id": "cli:skill:budget-split",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "budget-split",
+      "enabled": true,
+      "origin": "user",
+      "description": "Divides a sum between positions under set limits. (Raw description from the file, as its author wrote it.)",
+      "branch": "finance",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 2,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 34,
+      "staticTokensEst": 600,
+      "title": {
+        "en": "Budget split",
+        "ru": "Раздел бюджета"
+      },
+      "summary": {
+        "en": "Divides a sum between positions under set limits.",
+        "ru": "Делит сумму между позициями по заданным лимитам."
+      }
+    },
+    {
+      "id": "cli:skill:invoice-check",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "invoice-check",
+      "enabled": true,
+      "origin": "user",
+      "description": "Compares an invoice against the quote. (Raw description from the file, as its author wrote it.)",
+      "branch": "finance",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 4,
+        "missed30d": 2
+      },
+      "verdict": "missed",
+      "startupTokensEst": 32,
+      "staticTokensEst": 500,
+      "title": {
+        "en": "Invoice check",
+        "ru": "Проверка счетов"
+      },
+      "summary": {
+        "en": "Compares an invoice against the quote.",
+        "ru": "Сверяет счёт со сметой."
+      }
+    },
+    {
+      "id": "synced:skill:price-lookup",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "price-lookup",
+      "enabled": true,
+      "origin": "user",
+      "description": "Fetches a delayed price for one ticker. (Raw description from the file, as its author wrote it.)",
+      "branch": "finance",
+      "pack": "user",
+      "usage": {
+        "uses30d": 1,
+        "lifetimeUses": 6,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-08T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 30,
+      "staticTokensEst": 450,
+      "title": {
+        "en": "Price lookup",
+        "ru": "Поиск цен"
+      },
+      "summary": {
+        "en": "Fetches a delayed price for one ticker.",
+        "ru": "Получает отложенную цену по одному тикеру."
+      }
+    },
+    {
+      "id": "cli:plugin:superpowers@marketplace",
+      "kind": "plugin",
+      "surface": "cli",
+      "name": "superpowers@marketplace",
+      "enabled": true,
+      "origin": "user",
+      "description": "A bundle of working habits: plans, tests, reviews. (Raw description from the file, as its author wrote it.)",
+      "branch": "system",
+      "pack": "user",
+      "usage": {
+        "uses30d": 20,
+        "lifetimeUses": 0,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-16T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "title": {
+        "en": "Superpowers",
+        "ru": "Superpowers"
+      },
+      "summary": {
+        "en": "A bundle of working habits: plans, tests, reviews.",
+        "ru": "Набор рабочих привычек: планы, тесты, ревью."
+      },
+      "version": "1.4.0"
+    },
+    {
+      "id": "cli:plugin:impeccable@marketplace",
+      "kind": "plugin",
+      "surface": "cli",
+      "name": "impeccable@marketplace",
+      "enabled": true,
+      "origin": "user",
+      "description": "A bundle of interface design skills. (Raw description from the file, as its author wrote it.)",
+      "branch": "system",
+      "pack": "user",
+      "usage": {
+        "uses30d": 6,
+        "lifetimeUses": 0,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "title": {
+        "en": "Impeccable",
+        "ru": "Impeccable"
+      },
+      "summary": {
+        "en": "A bundle of interface design skills.",
+        "ru": "Набор навыков по дизайну интерфейсов."
+      },
+      "version": "4.8.0",
+      "update": {
+        "installed": "4.8.0",
+        "latest": "4.9.1"
+      }
+    },
+    {
+      "id": "cli:plugin:context-mode@marketplace",
+      "kind": "plugin",
+      "surface": "cli",
+      "name": "context-mode@marketplace",
+      "enabled": true,
+      "origin": "user",
+      "description": "Keeps long tool output out of the conversation. (Raw description from the file, as its author wrote it.)",
+      "branch": "system",
+      "pack": "user",
+      "usage": {
+        "uses30d": 15,
+        "lifetimeUses": 0,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-14T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "title": {
+        "en": "Context mode",
+        "ru": "Экономия контекста"
+      },
+      "summary": {
+        "en": "Keeps long tool output out of the conversation.",
+        "ru": "Не пускает длинный вывод инструментов в разговор."
+      },
+      "version": "1.1.0"
+    },
+    {
+      "id": "cli:mcp_server:filesystem",
+      "kind": "mcp_server",
+      "surface": "cli",
+      "name": "filesystem",
+      "enabled": true,
+      "origin": "user",
+      "description": "Lets the agent read and write files in chosen folders. (Raw description from the file, as its author wrote it.)",
+      "branch": "system",
+      "pack": "user",
+      "usage": {
+        "uses30d": 30,
+        "lifetimeUses": 500,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 240,
+      "title": {
+        "en": "Files",
+        "ru": "Файлы"
+      },
+      "summary": {
+        "en": "Lets the agent read and write files in chosen folders.",
+        "ru": "Даёт агенту читать и писать файлы в выбранных папках."
+      }
+    },
+    {
+      "id": "cli:mcp_server:browser",
+      "kind": "mcp_server",
+      "surface": "cli",
+      "name": "browser",
+      "enabled": true,
+      "origin": "user",
+      "description": "Opens pages and reads them like a person would. (Raw description from the file, as its author wrote it.)",
+      "branch": "system",
+      "pack": "user",
+      "usage": {
+        "uses30d": 2,
+        "lifetimeUses": 16,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-12T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 520,
+      "title": {
+        "en": "Browser",
+        "ru": "Браузер"
+      },
+      "summary": {
+        "en": "Opens pages and reads them like a person would.",
+        "ru": "Открывает страницы и читает их как человек."
+      }
+    },
+    {
+      "id": "cli:skill:misc-helper",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "misc-helper",
+      "enabled": true,
+      "origin": "user",
+      "branch": "other",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 0,
+        "missed30d": 0
+      },
+      "verdict": "unknown",
+      "startupTokensEst": 22,
+      "staticTokensEst": 200
+    },
+    {
+      "id": "cli:skill:scratch-ideas",
+      "kind": "skill",
+      "surface": "cli",
+      "name": "scratch-ideas",
+      "enabled": true,
+      "origin": "user",
+      "description": "Holds half-finished ideas to revisit. (Raw description from the file, as its author wrote it.)",
+      "branch": "other",
+      "pack": "user",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 1,
+        "missed30d": 0
+      },
+      "verdict": "asleep",
+      "startupTokensEst": 20,
+      "staticTokensEst": 180,
+      "summary": {
+        "en": "Holds half-finished ideas to revisit."
+      }
+    },
+    {
+      "id": "synced:skill:deep-research",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "deep-research",
+      "enabled": true,
+      "origin": "user",
+      "description": "Runs many searches and reads sources, then writes a cited summary. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "synced",
+      "usage": {
+        "uses30d": 8,
+        "lifetimeUses": 52,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 45,
+      "staticTokensEst": 1600,
+      "title": {
+        "en": "Deep research",
+        "ru": "Глубокий поиск"
+      },
+      "summary": {
+        "en": "Runs many searches and reads sources, then writes a cited summary.",
+        "ru": "Делает много поисков, читает источники и пишет краткий вывод со ссылками."
+      }
+    },
+    {
+      "id": "desktop:skill:deep-research",
+      "kind": "skill",
+      "surface": "desktop",
+      "name": "deep-research",
+      "enabled": true,
+      "origin": "user",
+      "description": "Runs many searches and reads sources, then writes a cited summary. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "desktop",
+      "usage": {
+        "uses30d": 8,
+        "lifetimeUses": 52,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 45,
+      "staticTokensEst": 1600,
+      "title": {
+        "en": "Deep research",
+        "ru": "Глубокий поиск"
+      },
+      "summary": {
+        "en": "Runs many searches and reads sources, then writes a cited summary.",
+        "ru": "Делает много поисков, читает источники и пишет краткий вывод со ссылками."
+      }
+    },
+    {
+      "id": "synced:skill:humanizer",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "humanizer",
+      "enabled": true,
+      "origin": "user",
+      "description": "Rewrites stiff, machine-sounding text so it reads naturally. (Raw description from the file, as its author wrote it.)",
+      "branch": "writing",
+      "pack": "synced",
+      "usage": {
+        "uses30d": 6,
+        "lifetimeUses": 33,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-09T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 42,
+      "staticTokensEst": 1100,
+      "title": {
+        "en": "Humanizer",
+        "ru": "Очеловечивание текста"
+      },
+      "summary": {
+        "en": "Rewrites stiff, machine-sounding text so it reads naturally.",
+        "ru": "Переписывает деревянный текст так, чтобы он звучал естественно."
+      }
+    },
+    {
+      "id": "desktop:skill:xlsx",
+      "kind": "skill",
+      "surface": "desktop",
+      "name": "xlsx",
+      "enabled": true,
+      "origin": "user",
+      "description": "Reads and builds spreadsheet files with formulas. (Raw description from the file, as its author wrote it.)",
+      "branch": "data",
+      "pack": "desktop",
+      "usage": {
+        "uses30d": 1,
+        "lifetimeUses": 11,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-12T12:00:00.000Z"
+      },
+      "verdict": "rare",
+      "startupTokensEst": 48,
+      "staticTokensEst": 1900,
+      "title": {
+        "en": "Spreadsheets",
+        "ru": "Таблицы"
+      },
+      "summary": {
+        "en": "Reads and builds spreadsheet files with formulas.",
+        "ru": "Читает и собирает файлы таблиц с формулами."
+      }
+    },
+    {
+      "id": "synced:skill:hindsight",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "hindsight",
+      "enabled": true,
+      "origin": "user",
+      "description": "Recalls and saves lasting facts across sessions. (Raw description from the file, as its author wrote it.)",
+      "branch": "memory",
+      "pack": "synced",
+      "usage": {
+        "uses30d": 0,
+        "lifetimeUses": 10,
+        "missed30d": 5
+      },
+      "verdict": "missed",
+      "startupTokensEst": 38,
+      "staticTokensEst": 800,
+      "title": {
+        "en": "Long-term memory",
+        "ru": "Долгая память"
+      },
+      "summary": {
+        "en": "Recalls and saves lasting facts across sessions.",
+        "ru": "Достаёт и сохраняет важные факты между сессиями."
+      }
+    },
+    {
+      "id": "synced:skill:critique",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "critique",
+      "enabled": true,
+      "origin": "user",
+      "description": "Reviews an interface for hierarchy, clarity and polish. (Raw description from the file, as its author wrote it.)",
+      "branch": "design",
+      "pack": "synced",
+      "usage": {
+        "uses30d": 5,
+        "lifetimeUses": 28,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 70,
+      "staticTokensEst": 2400,
+      "title": {
+        "en": "Design critique",
+        "ru": "Разбор дизайна"
+      },
+      "summary": {
+        "en": "Reviews an interface for hierarchy, clarity and polish.",
+        "ru": "Оценивает интерфейс: иерархию, ясность, аккуратность."
+      }
+    },
+    {
+      "id": "cli:mcp_server:github",
+      "kind": "mcp_server",
+      "surface": "cli",
+      "name": "github",
+      "enabled": true,
+      "origin": "github",
+      "description": "Lets the agent read issues and pull requests and open new ones. (Raw description from the file, as its author wrote it.)",
+      "branch": "code",
+      "pack": "user",
+      "usage": {
+        "uses30d": 11,
+        "lifetimeUses": 90,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-15T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 320,
+      "title": {
+        "en": "GitHub",
+        "ru": "GitHub"
+      },
+      "summary": {
+        "en": "Lets the agent read issues and pull requests and open new ones.",
+        "ru": "Позволяет агенту читать задачи и запросы на слияние и создавать новые."
+      },
+      "inferred": true
+    },
+    {
+      "id": "synced:skill:search",
+      "kind": "skill",
+      "surface": "synced",
+      "name": "search",
+      "enabled": true,
+      "origin": "user",
+      "description": "Finds pages by meaning, not only by keywords. (Raw description from the file, as its author wrote it.)",
+      "branch": "research",
+      "pack": "synced",
+      "usage": {
+        "uses30d": 12,
+        "lifetimeUses": 77,
+        "missed30d": 0,
+        "lastUsedAt": "2026-11-13T12:00:00.000Z"
+      },
+      "verdict": "active",
+      "startupTokensEst": 40,
+      "staticTokensEst": 700,
+      "title": {
+        "en": "Web search",
+        "ru": "Поиск в сети"
+      },
+      "summary": {
+        "en": "Finds pages by meaning, not only by keywords.",
+        "ru": "Находит страницы по смыслу, а не только по словам."
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "skill-oracle",
+      "title": "Ask the skill oracle before starting",
+      "matched": 96,
+      "total": 142,
+      "rate": 0.676,
+      "target": 0.8
+    },
+    {
+      "id": "plan-first",
+      "title": "Write a plan before large changes",
+      "matched": 61,
+      "total": 142,
+      "rate": 0.43,
+      "target": 0.5
+    },
+    {
+      "id": "tests-first",
+      "title": "Run the tests before saying done",
+      "matched": 128,
+      "total": 142,
+      "rate": 0.9,
+      "target": 0.85
+    }
+  ],
+  "warnings": [
+    {
+      "source": "updates",
+      "message": "one plugin has no comparable version"
+    }
+  ],
+  "totals": {
+    "skill": 42,
+    "agent": 2,
+    "mcp_server": 10,
+    "hook": 4,
+    "scheduled_task": 3,
+    "memory": 3,
+    "instructions": 1,
+    "plugin": 3
   }
- ],
- "rules": [
-  {
-   "id": "skill-oracle",
-   "title": "Ask the skill oracle before starting",
-   "matched": 96,
-   "total": 142,
-   "rate": 0.676,
-   "target": 0.8
-  },
-  {
-   "id": "plan-first",
-   "title": "Write a plan before large changes",
-   "matched": 61,
-   "total": 142,
-   "rate": 0.43,
-   "target": 0.5
-  },
-  {
-   "id": "tests-first",
-   "title": "Run the tests before saying done",
-   "matched": 128,
-   "total": 142,
-   "rate": 0.9,
-   "target": 0.85
-  }
- ],
- "warnings": [
-  {
-   "source": "updates",
-   "message": "one plugin has no comparable version"
-  }
- ],
- "totals": {
-  "skill": 35,
-  "agent": 2,
-  "mcp_server": 10,
-  "hook": 4,
-  "scheduled_task": 3,
-  "memory": 3,
-  "instructions": 1,
-  "plugin": 3
- }
 }

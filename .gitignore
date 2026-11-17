@@ -3,3 +3,5 @@ dist/
 state.json
 *.log
 .DS_Store
+.claude/
+mockups/state.json

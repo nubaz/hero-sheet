@@ -5,6 +5,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { main } from '../src/cli.js';
 import type { State } from '../src/types.js';
+import { usageFromTranscripts } from '../src/usage/transcripts.js';
+import { resolveRoots } from '../src/roots.js';
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const fixtureHome = path.join(dir, 'fixtures', 'home');
@@ -32,8 +34,8 @@ describe('main scan', () => {
     expect(state.rules.map((r) => r.id)).toEqual(['skill-oracle']);
     expect(state.cards.find((c) => c.id === 'cli:skill:alpha')!.usage.lifetimeUses).toBe(7);
     expect(state.cards.every((c) => c.usage && c.verdict)).toBe(true);
-    // claude binary stubbed as missing -> one updates warning, scan still completes
-    expect(state.warnings.some((w) => w.source === 'updates')).toBe(true);
+    // the update check is a file read now: no marketplace clone in the fixture, no warning
+    expect(state.warnings.some((w) => w.source === 'updates')).toBe(false);
     // Global constraint: no MCP secret values anywhere in output
     const text = fs.readFileSync(out, 'utf8');
     for (const secret of ['sk-test-123', 'Bearer abc', 'tok-xyz', 'pw-in-url', 'urlkey-999']) {
@@ -53,6 +55,17 @@ describe('main scan', () => {
     expect(lines()).toHaveLength(2);
   });
 
+  it('records the number of sessions seen by the usage source', async () => {
+    const t = tmp();
+    const out = path.join(t, 'state.json');
+    expect(await main(['scan', '--home', fixtureHome, '--out', out], { exec, now, env: { XDG_STATE_HOME: t } })).toBe(0);
+    const state = JSON.parse(fs.readFileSync(out, 'utf8')) as State;
+    const expected = (await usageFromTranscripts(resolveRoots(fixtureHome, {}), 30, now())).sessions;
+    expect(expected).toBeGreaterThan(0);
+    expect(state.sessions).toBe(expected);
+
+  });
+
   it('defaults --out to <stateDir>/state.json', async () => {
     const t = tmp();
     const env = { XDG_STATE_HOME: t };
@@ -69,6 +82,31 @@ describe('main scan', () => {
     const state = JSON.parse(fs.readFileSync(out, 'utf8')) as State;
     expect(state.warnings.some((w) => w.source === 'rules')).toBe(true);
     expect(state.rules).toEqual([]);
+  });
+
+  it('marks a recommended but never loaded skill as missed, and keeps used ones used', async () => {
+    const t = tmp();
+    const out = path.join(t, 'state.json');
+    const home = path.join(dir, 'fixtures', 'oracle-home');
+    const rules = path.join(dir, '..', 'rules.example.json');
+    expect(await main(['scan', '--home', home, '--out', out, '--rules', rules], { exec, now, env: { XDG_STATE_HOME: t } })).toBe(0);
+    const state = JSON.parse(fs.readFileSync(out, 'utf8')) as State;
+    const by = new Map(state.cards.map((c) => [c.id, c]));
+    expect(by.get('cli:skill:alpha')).toMatchObject({ verdict: 'missed', usage: { uses30d: 0, missed30d: 2 } });
+    expect(by.get('cli:skill:delta')).toMatchObject({ verdict: 'rare', usage: { uses30d: 1, missed30d: 1 } });
+    expect(state.cards.every((c) => typeof c.usage.missed30d === 'number')).toBe(true);
+  });
+
+  it('gives no missed verdicts when the rules file configures no oracle', async () => {
+    const t = tmp();
+    const out = path.join(t, 'state.json');
+    const rules = path.join(t, 'rules.json');
+    fs.writeFileSync(rules, JSON.stringify([]));
+    const home = path.join(dir, 'fixtures', 'oracle-home');
+    expect(await main(['scan', '--home', home, '--out', out, '--rules', rules], { exec, now, env: { XDG_STATE_HOME: t } })).toBe(0);
+    const state = JSON.parse(fs.readFileSync(out, 'utf8')) as State;
+    expect(state.cards.some((c) => c.verdict === 'missed')).toBe(false);
+    expect(state.cards.find((c) => c.id === 'cli:skill:alpha')!.verdict).toBe('asleep');
   });
 
   it('returns 2 for a bad command line', async () => {

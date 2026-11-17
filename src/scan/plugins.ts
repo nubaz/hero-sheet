@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import type { Item, Roots, ScanResult, Warning } from '../types.js';
+import type { Item, Roots, ScanResult, Surface, Warning } from '../types.js';
 import { readSkillFile } from '../frontmatter.js';
 import { errMessage, estTokens, isDir, readJson } from '../util.js';
 
@@ -20,6 +20,61 @@ function asRecord(v: unknown): Record<string, unknown> | undefined {
 
 function str(v: unknown): string | undefined {
   return typeof v === 'string' && v ? v : undefined;
+}
+
+export interface ShippedCtx {
+  surface: Surface;
+  source: string;   // warning source
+  label: string;    // plugin label used in warnings
+  pluginName: string;
+  origin: string;   // value of `origin` on shipped items
+  enabled: boolean;
+}
+
+/** Skills (<dir>/skills/*\/SKILL.md) and agents (<dir>/agents/*.md) a plugin directory ships. */
+export function collectShipped(dir: string, ctx: ShippedCtx, items: Item[], warnings: Warning[]): void {
+  const { surface, source, label, pluginName, origin, enabled } = ctx;
+  const shipped = (kind: 'skill' | 'agent', file: string, fallbackName: string): void => {
+    try {
+      const fm = readSkillFile(file);
+      const shortName = fm.name ?? fallbackName;
+      const description = fm.description;
+      items.push({
+        id: `${surface}:${kind}:${pluginName}:${shortName}`,
+        kind,
+        surface,
+        name: `${pluginName}:${shortName}`,
+        description,
+        enabled,
+        origin,
+        path: fs.realpathSync(file),
+        staticTokensEst: estTokens(fm.chars),
+        startupTokensEst: estTokens((shortName + (description ?? '')).length),
+      });
+    } catch (e) {
+      warnings.push({ source, message: `${label}: ${kind} ${fallbackName}: ${errMessage(e)}` });
+    }
+  };
+
+  const skillsDir = path.join(dir, 'skills');
+  if (isDir(skillsDir)) {
+    for (const d of fs.readdirSync(skillsDir).sort()) {
+      if (d.startsWith('.') || !isDir(path.join(skillsDir, d))) continue;
+      const file = path.join(skillsDir, d, 'SKILL.md');
+      if (!fs.existsSync(file)) {
+        warnings.push({ source, message: `${label}: skill ${d}: no SKILL.md` });
+        continue;
+      }
+      shipped('skill', file, d);
+    }
+  }
+  const agentsDir = path.join(dir, 'agents');
+  if (isDir(agentsDir)) {
+    for (const f of fs.readdirSync(agentsDir).sort()) {
+      if (!f.endsWith('.md') || f.startsWith('.')) continue;
+      shipped('agent', path.join(agentsDir, f), f.slice(0, -3));
+    }
+  }
 }
 
 /** Plugins from installed_plugins.json plus the skills and agents each one ships. */
@@ -91,47 +146,7 @@ export function scanPlugins(roots: Roots): ScanResult {
       continue;
     }
 
-    const shipped = (kind: 'skill' | 'agent', file: string, fallbackName: string): void => {
-      try {
-        const fm = readSkillFile(file);
-        const shortName = fm.name ?? fallbackName;
-        const description = fm.description;
-        items.push({
-          id: `cli:${kind}:${pluginName}:${shortName}`,
-          kind,
-          surface: 'cli',
-          name: `${pluginName}:${shortName}`,
-          description,
-          enabled,
-          origin: id,
-          path: fs.realpathSync(file),
-          staticTokensEst: estTokens(fm.chars),
-          startupTokensEst: estTokens((shortName + (description ?? '')).length),
-        });
-      } catch (e) {
-        warnings.push({ source: 'plugins', message: `${id}: ${kind} ${fallbackName}: ${errMessage(e)}` });
-      }
-    };
-
-    const skillsDir = path.join(installPath, 'skills');
-    if (isDir(skillsDir)) {
-      for (const d of fs.readdirSync(skillsDir).sort()) {
-        if (d.startsWith('.') || !isDir(path.join(skillsDir, d))) continue;
-        const file = path.join(skillsDir, d, 'SKILL.md');
-        if (!fs.existsSync(file)) {
-          warnings.push({ source: 'plugins', message: `${id}: skill ${d}: no SKILL.md` });
-          continue;
-        }
-        shipped('skill', file, d);
-      }
-    }
-    const agentsDir = path.join(installPath, 'agents');
-    if (isDir(agentsDir)) {
-      for (const f of fs.readdirSync(agentsDir).sort()) {
-        if (!f.endsWith('.md') || f.startsWith('.')) continue;
-        shipped('agent', path.join(agentsDir, f), f.slice(0, -3));
-      }
-    }
+    collectShipped(installPath, { surface: 'cli', source: 'plugins', label: id, pluginName, origin: id, enabled }, items, warnings);
   }
   return { items, warnings };
 }

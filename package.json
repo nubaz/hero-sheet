@@ -9,7 +9,8 @@
   "scripts": {
     "test": "vitest run",
     "build": "tsc -p tsconfig.build.json",
-    "scan": "tsx src/cli.ts scan"
+    "scan": "tsx src/cli.ts scan",
+    "enrich": "tsx src/cli.ts enrich"
   },
   "dependencies": { "yaml": "^2.6.0" },
   "devDependencies": {

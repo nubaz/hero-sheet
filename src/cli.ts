@@ -8,6 +8,7 @@ import { appendSnapshot } from './journal.js';
 import { buildCards } from './join.js';
 import { evaluateRules, loadRules } from './rules.js';
 import { resolveRoots } from './roots.js';
+import { serveCommand } from './serve.js';
 import { scanConnectors } from './scan/connectors.js';
 import { scanMcpServers, scanHooks, scanMemory, scanScheduledTasks } from './scan/config.js';
 import { scanDesktopSkills, scanSynced } from './scan/desktop.js';
@@ -42,6 +43,7 @@ export interface Deps {
 }
 
 export async function main(argv: string[], deps: Deps = {}): Promise<number> {
+  if (argv[0] === 'serve') return serveCommand(argv.slice(1), deps.env);
   const baseExec = deps.exec ?? defaultExec;
   const now = deps.now ?? (() => new Date());
   const env = deps.env ?? process.env;

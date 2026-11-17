@@ -36,3 +36,4 @@ One real macOS setup, 2026-11-16, `cclens` 0.4.0 installed. A full scan took abo
 
 - claude.ai connectors show up by id with sample tool names; their display names are not stored locally.
 - Run binaries from `./node_modules/.bin/` if the checkout path contains a colon; `npx` and `npm test` break on it.
+- The update check compares against the marketplace clones on disk. If a clone has not been refreshed, a newer release will not show up; plugins whose catalog entry carries no version cannot be compared.

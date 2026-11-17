@@ -1,0 +1,22 @@
+{
+  "lastUpdated": 1763251200000,
+  "skills": [
+    {
+      "skillId": "skill_01",
+      "name": "humanizer",
+      "description": "Rewrite text so it reads naturally",
+      "creatorType": "anthropic",
+      "updatedAt": "2026-10-01T00:00:00.000Z",
+      "enabled": true,
+      "backingPluginId": "plugin_demo"
+    },
+    {
+      "skillId": "skill_02",
+      "name": "no-dir-skill",
+      "description": "Listed in the manifest but not on disk",
+      "creatorType": "user",
+      "updatedAt": 1760000000000,
+      "enabled": false
+    }
+  ]
+}

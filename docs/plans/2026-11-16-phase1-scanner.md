@@ -147,7 +147,7 @@ export function scanMemory(roots: Roots): ScanResult;          // kind 'memory' 
 
 ### Task 5: Synced and desktop skills
 
-**Files:** Create `src/scan/desktop.ts`, `test/desktop.test.ts`, fixtures `Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/a/b/{manifest.json,skills/humanizer/SKILL.md}` and `.claude/skills/synced/a_b/skills/x/SKILL.md`.
+**Files:** Create `src/scan/desktop.ts`, `test/desktop.test.ts`, fixtures `Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/a/b/{manifest.json,skills/humanizer/SKILL.md}` and `.claude/skills/synced/a_b/x/SKILL.md` (observed layout: skills sit directly under the bucket directory).
 
 **Interfaces — Produces:** `scanDesktopSkills(roots): ScanResult` (surface `desktop`), `scanSynced(roots): ScanResult` (surface `synced`).
 

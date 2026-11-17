@@ -1,0 +1,12 @@
+{
+  "enabledPlugins": { "demo@mkt": true },
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "echo one" }] },
+      { "hooks": [{ "type": "command", "command": "echo two" }] }
+    ],
+    "PostToolUse": [
+      { "matcher": "Bash", "hooks": [{ "type": "command", "command": "echo post" }] }
+    ]
+  }
+}

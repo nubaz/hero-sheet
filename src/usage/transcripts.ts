@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import readline from 'node:readline';
-import type { Roots } from '../types.js';
+import type { Roots, Usage } from '../types.js';
+import { bump, BUILTIN_COMMANDS, type UsageMap } from './shared.js';
 import { isDir } from '../util.js';
 
 const DAY_MS = 86_400_000;
@@ -90,4 +91,39 @@ export function* walkStrings(v: unknown, depth = 0): Generator<string> {
   if (v && typeof v === 'object') {
     for (const x of Object.values(v as Record<string, unknown>)) yield* walkStrings(x, depth + 1);
   }
+}
+
+/**
+ * Fallback usage counter: Skill tool_use inputs by `skill`, mcp__server__tool
+ * calls by server, Task/Agent calls by subagent_type. Counts only lines whose
+ * timestamp is inside the window. `lastUsedAt` is the newest such timestamp.
+ */
+export async function usageFromTranscripts(
+  roots: Roots,
+  sinceDays: number,
+  now: Date = new Date(),
+): Promise<UsageMap> {
+  const cutoff = now.getTime() - sinceDays * DAY_MS;
+  const skills = new Map<string, Usage>();
+  const servers = new Map<string, Usage>();
+  const agents = new Map<string, Usage>();
+  const sessions = new Set<string>();
+  for await (const { file, line } of iterTranscriptLines(roots, sinceDays, now)) {
+    const ts = timestampOf(line);
+    if (ts && Date.parse(ts) < cutoff) continue;
+    sessions.add(file);
+    for (const tu of toolUsesOf(line)) {
+      if (tu.name === 'Skill') {
+        const ref = tu.input.skill;
+        if (typeof ref === 'string' && ref && !BUILTIN_COMMANDS.has(ref)) bump(skills, ref, 1, ts);
+      } else if (tu.name === 'Task' || tu.name === 'Agent') {
+        const ref = tu.input.subagent_type;
+        if (typeof ref === 'string' && ref) bump(agents, ref, 1, ts);
+      } else {
+        const mcp = parseMcpTool(tu.name);
+        if (mcp) bump(servers, mcp.server, 1, ts);
+      }
+    }
+  }
+  return { skills, servers, agents, source: 'transcripts', sessions: sessions.size };
 }

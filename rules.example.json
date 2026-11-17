@@ -1,0 +1,8 @@
+[
+  {
+    "id": "skill-oracle",
+    "title": "Skill oracle runs in working sessions",
+    "pattern": "^jev-skill ",
+    "target": 0.8
+  }
+]

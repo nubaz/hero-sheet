@@ -1,0 +1,6 @@
+{"type": "assistant", "timestamp": "2026-11-12T10:00:01Z", "message": {"role": "assistant", "content": [{"type": "tool_use", "id": "t1", "name": "Bash", "input": {"command": "ls -la"}}]}}
+{"type": "assistant", "timestamp": "2026-11-12T10:00:02Z", "message": {"role": "assistant", "content": [{"type": "tool_use", "id": "t2", "name": "Bash", "input": {"command": "ls -la"}}]}}
+{"type": "assistant", "timestamp": "2026-11-12T10:00:03Z", "message": {"role": "assistant", "content": [{"type": "tool_use", "id": "t3", "name": "Bash", "input": {"command": "ls -la"}}]}}
+{"type": "assistant", "timestamp": "2026-11-12T10:00:04Z", "message": {"role": "assistant", "content": [{"type": "tool_use", "id": "t4", "name": "Bash", "input": {"command": "ls -la"}}]}}
+{"type": "assistant", "timestamp": "2026-11-12T10:00:05Z", "message": {"role": "assistant", "content": [{"type": "tool_use", "id": "t5", "name": "Bash", "input": {"command": "ls -la"}}]}}
+{"type": "assistant", "timestamp": "2026-11-12T10:00:06Z", "message": {"role": "assistant", "content": [{"type": "tool_use", "id": "t6", "name": "Bash", "input": {"command": "ls -la"}}]}}

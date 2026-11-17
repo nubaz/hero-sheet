@@ -32,8 +32,8 @@ describe('main scan', () => {
     expect(state.rules.map((r) => r.id)).toEqual(['skill-oracle']);
     expect(state.cards.find((c) => c.id === 'cli:skill:alpha')!.usage.lifetimeUses).toBe(7);
     expect(state.cards.every((c) => c.usage && c.verdict)).toBe(true);
-    // claude binary stubbed as missing -> one updates warning, scan still completes
-    expect(state.warnings.some((w) => w.source === 'updates')).toBe(true);
+    // the update check is a file read now: no marketplace clone in the fixture, no warning
+    expect(state.warnings.some((w) => w.source === 'updates')).toBe(false);
     // Global constraint: no MCP secret values anywhere in output
     const text = fs.readFileSync(out, 'utf8');
     for (const secret of ['sk-test-123', 'Bearer abc', 'tok-xyz', 'pw-in-url', 'urlkey-999']) {

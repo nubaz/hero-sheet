@@ -67,9 +67,8 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     return 2;
   }
 
-  // cclens and `claude` always read the real home and cannot be pointed at
-  // another one, so with --home they are not run: usage comes from that home's
-  // transcripts and the update check is skipped.
+  // cclens always reads the real home and cannot be pointed at another one,
+  // so with --home it is not run: usage comes from that home's transcripts.
   const external = values.home === undefined;
   const exec: Exec = external ? baseExec : async () => ({ code: 127, stdout: '' });
   const roots = resolveRoots(values.home, env);
@@ -117,12 +116,12 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
   }
   let cards = buildCards(items, usage, lifetimeFromClaudeJson(roots));
 
-  if (external) {
-    const updated = await checkUpdates(cards, exec);
+  try {
+    const updated = checkUpdates(cards, roots);
     cards = updated.cards;
     warnings.push(...updated.warnings);
-  } else {
-    warnings.push({ source: 'updates', message: 'skipped: update check reads the real home, not --home' });
+  } catch (e) {
+    warnings.push({ source: 'updates', message: errMessage(e) });
   }
 
   let rules: RuleResult[] = [];

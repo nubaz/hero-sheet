@@ -22,6 +22,8 @@ npm run scan -- [--home <dir>] [--out <file>] [--rules <file>] [--days 30]
 - `--rules <file>` loads rule checks. The default is `rules.json` next to the state file. See `rules.example.json`: a rule is a regular expression matched against Bash commands, and the report shows the share of sessions that match.
 - `--days` sets the usage window (default 30).
 
+Verdicts: `active` (3 or more uses in the window), `rare` (1 or 2), `disabled`, `unknown` (kinds that leave no usage trace: hooks, memory, instructions, scheduled tasks), `asleep` and `missed`. `asleep` means 0 uses and no evidence the item was ever relevant. It is neutral: an unused skill is usually one the agent never reached for, not a useless one. `missed` means 0 uses, but a skill oracle recommended it in a session that then did not load it; that is the agent's failure, and every card carries `usage.missed30d` so the count is visible even on items that were used.
+
 Usage counts come from `cclens` when it is installed and works, and from a built-in transcript parser otherwise; `state.usageSource` says which. The update check is a file read: for each installed plugin it compares the installed version with the one in the marketplace clone under `~/.claude/plugins/marketplaces/<marketplace>` (the `version` in `marketplace.json`, or the `plugin.json` version at the entry's relative `source`). Plugins with no comparable version, including commit-hash installs, get no update flag and no warning.
 
 The scan is read-only and makes no network calls. MCP server `env`, `headers` and `args` are never read into the output: only the server name, transport and URL host. Token figures are estimates (characters divided by 4).

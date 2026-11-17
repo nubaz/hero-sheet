@@ -26,9 +26,10 @@ export interface Usage {
   lifetimeUses?: number;
   outTokens?: number;
   ctxGrowth?: number;
+  missed30d?: number;
 }
 
-export type Verdict = 'active' | 'rare' | 'dead_weight' | 'disabled' | 'unknown';
+export type Verdict = 'active' | 'rare' | 'asleep' | 'missed' | 'disabled' | 'unknown';
 
 export interface Card extends Item {
   usage: Usage;

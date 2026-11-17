@@ -1,5 +1,5 @@
 ---
-name: [unclosed
-description: nope
+: : :
+	- [bad
 ---
 Body

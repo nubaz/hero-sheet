@@ -96,17 +96,26 @@ export function scanDesktopSkills(roots: Roots): ScanResult {
   return { items, warnings };
 }
 
-/** Account-synced skills: <claudeDir>/skills/synced/<bucket>/skills/<name>/SKILL.md. */
+/**
+ * Account-synced skills. Observed layout is <claudeDir>/skills/synced/<bucket>/<name>/SKILL.md;
+ * a nested <bucket>/skills/<name>/ layout is accepted too.
+ */
 export function scanSynced(roots: Roots): ScanResult {
   const items: Item[] = [];
   const warnings: Warning[] = [];
   const base = path.join(roots.claudeDir, 'skills', 'synced');
   const seen = new Set<string>();
   for (const bucket of listDirs(base)) {
-    const skillsDir = path.join(base, bucket, 'skills');
-    for (const entry of listDirs(skillsDir)) {
+    const bucketDir = path.join(base, bucket);
+    const nested = path.join(bucketDir, 'skills');
+    const candidates = [
+      ...listDirs(bucketDir).filter((e) => e !== 'skills').map((e) => path.join(bucketDir, e)),
+      ...listDirs(nested).map((e) => path.join(nested, e)),
+    ];
+    for (const dir of candidates) {
+      const entry = path.basename(dir);
       let real: string;
-      try { real = fs.realpathSync(path.join(skillsDir, entry)); } catch { continue; }
+      try { real = fs.realpathSync(dir); } catch { continue; }
       if (seen.has(real)) continue;
       seen.add(real);
       try {

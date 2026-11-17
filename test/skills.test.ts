@@ -36,6 +36,12 @@ describe('scanUserSkills', () => {
     expect(items.some((i) => i.name === 'broken-yaml' || i.name === 'no-skill-file')).toBe(false);
   });
 
+  it('reads frontmatter that strict YAML rejects', () => {
+    const item = items.find((i) => i.id === 'cli:skill:colon-desc');
+    expect(item?.description).toBe('Notes about a person: their rules and preferences');
+    expect(warnings.some((w) => w.message.includes('colon-desc'))).toBe(false);
+  });
+
   it('skips the synced directory', () => {
     expect(items.some((i) => i.name === 'synced')).toBe(false);
   });

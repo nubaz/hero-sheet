@@ -54,7 +54,7 @@ describe('scanDesktopSkills', () => {
 describe('scanSynced', () => {
   it('lists synced skills on the synced surface', () => {
     const { items } = scanSynced(roots);
-    expect(items.map((i) => i.id)).toEqual(['synced:skill:x']);
+    expect(items.map((i) => i.id)).toEqual(['synced:skill:x', 'synced:skill:y']);
     expect(items[0].surface).toBe('synced');
     expect(items[0].description).toBe('Synced test skill');
     expect(items[0].enabled).toBe(true);

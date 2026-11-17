@@ -13,6 +13,7 @@ import { scanMcpServers, scanHooks, scanMemory, scanScheduledTasks } from './sca
 import { scanDesktopSkills, scanSynced } from './scan/desktop.js';
 import { scanUserAgents } from './scan/agents.js';
 import { scanPlugins } from './scan/plugins.js';
+import { scanSyncedPlugins } from './scan/synced-plugins.js';
 import { scanUserSkills } from './scan/skills.js';
 import type { Item, Kind, RuleResult, ScanResult, State, Warning } from './types.js';
 import { checkUpdates } from './updates.js';
@@ -94,6 +95,7 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
   run('scheduled-tasks', () => scanScheduledTasks(roots));
   run('memory', () => scanMemory(roots));
   run('synced', () => scanSynced(roots));
+  run('synced-plugins', () => scanSyncedPlugins(roots));
   run('desktop', () => scanDesktopSkills(roots));
 
   try {

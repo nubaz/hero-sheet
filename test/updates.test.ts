@@ -9,12 +9,12 @@ import { checkUpdates } from '../src/updates.js';
 function card(name: string, version?: string): Card {
   return {
     id: `cli:plugin:${name}`, kind: 'plugin', surface: 'cli', name, enabled: true,
-    version, usage: { uses30d: 0 }, verdict: 'asleep',
+    version, branch: 'other', pack: 'user', usage: { uses30d: 0 }, verdict: 'asleep',
   };
 }
 const skill: Card = {
   id: 'cli:skill:alpha', kind: 'skill', surface: 'cli', name: 'alpha', enabled: true,
-  usage: { uses30d: 0 }, verdict: 'asleep',
+  branch: 'other', pack: 'user', usage: { uses30d: 0 }, verdict: 'asleep',
 };
 
 const homes: string[] = [];

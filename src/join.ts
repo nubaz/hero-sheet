@@ -1,4 +1,5 @@
 import type { Card, Item, Surface, Usage, Verdict } from './types.js';
+import { defaultBranch, packOf } from './branch.js';
 import { normalizeSkillRef, type UsageMap } from './usage/index.js';
 
 export { normalizeSkillRef };
@@ -109,6 +110,6 @@ export function buildCards(
   return items.map((it) => {
     const u = acc.get(it.id) ?? { uses30d: 0 };
     u.missed30d ??= 0;
-    return { ...it, usage: u, verdict: verdictFor(it, u) };
+    return { ...it, branch: defaultBranch(it), pack: packOf(it), usage: u, verdict: verdictFor(it, u) };
   });
 }

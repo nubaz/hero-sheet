@@ -31,7 +31,16 @@ export interface Usage {
 
 export type Verdict = 'active' | 'rare' | 'asleep' | 'missed' | 'disabled' | 'unknown';
 
+export type BranchId = 'code' | 'design' | 'research' | 'writing' | 'data' | 'automation'
+  | 'memory' | 'communication' | 'finance' | 'system' | 'other';
+export interface Localized { en: string; ru?: string; }
+
 export interface Card extends Item {
+  branch: BranchId;        // always set; 'other' or a kind-based default when not enriched
+  pack: string;            // grouping inside a branch: owning plugin name, 'user', 'desktop', 'synced', 'connectors', 'app'
+  title?: Localized;       // short display name
+  summary?: Localized;     // one or two plain sentences: what it does and when it is used
+  art?: string;            // optional image URL or data URI; absent until an image step exists
   usage: Usage;
   verdict: Verdict;
   update?: { installed: string; latest: string };

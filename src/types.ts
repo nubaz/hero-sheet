@@ -58,3 +58,5 @@ export interface Roots {
   desktopDir: string;
   stateDir: string;
 }
+
+export interface ScanResult { items: Item[]; warnings: Warning[]; }

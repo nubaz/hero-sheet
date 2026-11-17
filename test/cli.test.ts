@@ -5,6 +5,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { main } from '../src/cli.js';
 import type { State } from '../src/types.js';
+import { usageFromTranscripts } from '../src/usage/transcripts.js';
+import { resolveRoots } from '../src/roots.js';
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const fixtureHome = path.join(dir, 'fixtures', 'home');
@@ -51,6 +53,17 @@ describe('main scan', () => {
 
     expect(await main(argv, { exec, now, env })).toBe(0);
     expect(lines()).toHaveLength(2);
+  });
+
+  it('records the number of sessions seen by the usage source', async () => {
+    const t = tmp();
+    const out = path.join(t, 'state.json');
+    expect(await main(['scan', '--home', fixtureHome, '--out', out], { exec, now, env: { XDG_STATE_HOME: t } })).toBe(0);
+    const state = JSON.parse(fs.readFileSync(out, 'utf8')) as State;
+    const expected = (await usageFromTranscripts(resolveRoots(fixtureHome, {}), 30, now())).sessions;
+    expect(expected).toBeGreaterThan(0);
+    expect(state.sessions).toBe(expected);
+
   });
 
   it('defaults --out to <stateDir>/state.json', async () => {

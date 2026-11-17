@@ -16,7 +16,7 @@ npm install
 npm run scan -- [--home <dir>] [--out <file>] [--rules <file>] [--days 30]
 ```
 
-`scan` reads your Claude Code setup and writes `state.json`, a list of cards with usage, a verdict and an update flag. It also appends one line per run to `journal.ndjson`. Both live in `${XDG_STATE_HOME:-~/.local/state}/hero-sheet/` unless `--out` says otherwise.
+`scan` reads your Claude Code setup and writes `state.json`, a list of cards with usage, a verdict, a branch, a pack and an update flag, plus `sessions` (sessions the usage source saw in the window) and `enriched`. It also appends one line per run to `journal.ndjson`. Both live in `${XDG_STATE_HOME:-~/.local/state}/hero-sheet/` unless `--out` says otherwise.
 
 - `--home <dir>` scans another home directory, for example a copy. `cclens` is skipped then, because it can only read the real home; usage comes from that home's transcripts. The update check reads files under that home, so it still runs.
 - `--rules <file>` loads the rules file. The default is `rules.json` next to the state file. See `rules.example.json`. The file is an object `{ "rules": [...], "oracle": {...} }`; a bare array of rules is still accepted. A rule is a regular expression matched against Bash commands, and the report shows the share of sessions that match. The optional `oracle` describes a command that recommends skills: `command` matches the Bash command, `line` matches one output line and needs the named groups `skill` and `fit`, and `minFit` (default 0.5) is the lowest fit that counts as a recommendation. A skill recommended in a session and not loaded through the Skill tool afterwards is counted once for that session as missed. With no oracle configured there are no `missed` verdicts.

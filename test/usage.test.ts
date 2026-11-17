@@ -17,6 +17,7 @@ const usageJson = {
     { skill: 'compact', invocations: 50, out_tokens: 1, ctx_growth: 1 },
   ],
   agents: [{ agent: 'Explore', runs: 4, out_tokens: 300 }],
+  sessions: 12,
 };
 const inventoryJson = {
   surfaces: [
@@ -34,6 +35,7 @@ describe('usageFromCclens', () => {
   it('maps skills, agents and summed servers; drops built-in commands', async () => {
     const u = (await usageFromCclens(stub))!;
     expect(u.source).toBe('cclens');
+    expect(u.sessions).toBe(12);
     expect(u.skills.get('hindsight')).toMatchObject({ uses30d: 16, outTokens: 900, ctxGrowth: 120 });
     expect(u.skills.has('compact')).toBe(false);
     expect(BUILTIN_COMMANDS.has('compact')).toBe(true);

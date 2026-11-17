@@ -171,6 +171,7 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     generatedAt: when.toISOString(),
     usageSource: usage.source,
     enriched: applied.enriched,
+    sessions: usage.sessions,
     cards, rules, warnings, totals,
   };
   fs.mkdirSync(path.dirname(out), { recursive: true });

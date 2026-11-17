@@ -56,6 +56,7 @@ export interface State {
   generatedAt: string;
   usageSource: 'cclens' | 'transcripts';
   enriched: boolean;
+  sessions: number;
   cards: Card[];
   rules: RuleResult[];
   warnings: Warning[];

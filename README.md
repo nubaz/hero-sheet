@@ -27,3 +27,15 @@ Usage counts come from `cclens` when it is installed and works, and from a built
 The scan is read-only and makes no network calls. MCP server `env`, `headers` and `args` are never read into the output: only the server name, transport and URL host. Token figures are estimates (characters divided by 4).
 
 Nothing leaves your machine. MIT licensed.
+
+## Verified on
+
+One real macOS setup, 2026-11-16, `cclens` 0.4.0 installed. A full scan took about 9 seconds and produced 202 cards: 114 skills (user, plugin-shipped, desktop app, account-synced), 16 plugins, 50 MCP servers (configured, app-provided and inferred claude.ai connectors), 5 hooks, 5 scheduled tasks, 11 memory files. Counts were checked by hand against the files on disk. No value from an MCP `env` or `headers` block appeared in the output.
+
+## Known gaps
+
+- Update check finds nothing yet. `claude plugin list --available --json` leaves installed plugins out of the catalog, so versions have to be compared against the marketplace clones under `~/.claude/plugins/marketplaces` instead.
+- User agents in `~/.claude/agents` are not scanned.
+- Account-synced plugins (`~/.claude/plugins/synced`) are not scanned.
+- claude.ai connectors show up by id with sample tool names; their display names are not stored locally.
+- Run binaries from `./node_modules/.bin/` if the checkout path contains a colon; `npx` and `npm test` break on it.

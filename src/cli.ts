@@ -4,24 +4,32 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
+import { applyCache, enrichCards, loadCache } from './enrich/index.js';
 import { appendSnapshot } from './journal.js';
 import { buildCards } from './join.js';
-import { evaluateRules, loadRules } from './rules.js';
+import { evaluateRules, loadRuleConfig, type RuleConfig } from './rules.js';
 import { resolveRoots } from './roots.js';
+import { serveCommand } from './serve.js';
 import { scanConnectors } from './scan/connectors.js';
 import { scanMcpServers, scanHooks, scanMemory, scanScheduledTasks } from './scan/config.js';
 import { scanDesktopSkills, scanSynced } from './scan/desktop.js';
+import { scanUserAgents } from './scan/agents.js';
 import { scanPlugins } from './scan/plugins.js';
+import { scanSyncedPlugins } from './scan/synced-plugins.js';
 import { scanUserSkills } from './scan/skills.js';
 import type { Item, Kind, RuleResult, ScanResult, State, Warning } from './types.js';
 import { checkUpdates } from './updates.js';
 import { errMessage } from './util.js';
 import { collectUsage, type Exec } from './usage/index.js';
 import { lifetimeFromClaudeJson } from './usage/native.js';
+import { missedFromTranscripts } from './usage/oracle.js';
 
 const KINDS: Kind[] = ['skill', 'plugin', 'mcp_server', 'agent', 'hook', 'scheduled_task', 'memory', 'instructions'];
 
-const USAGE = `usage: hero-sheet scan [--home <dir>] [--out <file>] [--rules <file>] [--days 30]`;
+const USAGE = `usage: hero-sheet scan [--home <dir>] [--out <file>] [--rules <file>] [--days 30]
+       hero-sheet enrich [--home <dir>] [--out <file>] [--cmd "<shell command>"] [--batch 25]`;
+
+const CACHE_NAME = 'enrich.json';
 
 /** Runs a binary without a shell. Missing binary gives code 127. */
 export const defaultExec: Exec = (cmd, args) =>
@@ -40,11 +48,12 @@ export interface Deps {
 }
 
 export async function main(argv: string[], deps: Deps = {}): Promise<number> {
+  if (argv[0] === 'serve') return serveCommand(argv.slice(1), deps.env);
   const baseExec = deps.exec ?? defaultExec;
   const now = deps.now ?? (() => new Date());
   const env = deps.env ?? process.env;
 
-  let values: { home?: string; out?: string; rules?: string; days?: string };
+  let values: { home?: string; out?: string; rules?: string; days?: string; cmd?: string; batch?: string };
   let command: string | undefined;
   try {
     const parsed = parseArgs({
@@ -53,6 +62,7 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
       options: {
         home: { type: 'string' }, out: { type: 'string' },
         rules: { type: 'string' }, days: { type: 'string' },
+        cmd: { type: 'string' }, batch: { type: 'string' },
       },
     });
     values = parsed.values;
@@ -62,14 +72,14 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     return 2;
   }
   const days = values.days === undefined ? 30 : Number(values.days);
+  if (command === 'enrich') return enrichCommand(values, env);
   if (command !== 'scan' || !Number.isFinite(days) || days <= 0) {
     process.stderr.write(`${USAGE}\n`);
     return 2;
   }
 
-  // cclens and `claude` always read the real home and cannot be pointed at
-  // another one, so with --home they are not run: usage comes from that home's
-  // transcripts and the update check is skipped.
+  // cclens always reads the real home and cannot be pointed at another one,
+  // so with --home it is not run: usage comes from that home's transcripts.
   const external = values.home === undefined;
   const exec: Exec = external ? baseExec : async () => ({ code: 127, stdout: '' });
   const roots = resolveRoots(values.home, env);
@@ -87,12 +97,14 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     }
   };
   run('skills', () => scanUserSkills(roots));
+  run('agents', () => scanUserAgents(roots));
   run('plugins', () => scanPlugins(roots));
   run('mcp', () => scanMcpServers(roots));
   run('hooks', () => scanHooks(roots));
   run('scheduled-tasks', () => scanScheduledTasks(roots));
   run('memory', () => scanMemory(roots));
   run('synced', () => scanSynced(roots));
+  run('synced-plugins', () => scanSyncedPlugins(roots));
   run('desktop', () => scanDesktopSkills(roots));
 
   try {
@@ -115,20 +127,41 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
     warnings.push({ source: 'usage', message: errMessage(e) });
     usage = { skills: new Map(), servers: new Map(), agents: new Map(), source: 'transcripts' as const, sessions: 0 };
   }
-  let cards = buildCards(items, usage, lifetimeFromClaudeJson(roots));
+  // rules file: rules and the optional skill oracle; a broken file is one warning
+  const ruleFile = values.rules ?? path.join(roots.stateDir, 'rules.json');
+  let ruleConfig: RuleConfig = { rules: [] };
+  let ruleError: string | undefined;
+  try { ruleConfig = loadRuleConfig(ruleFile); } catch (e) { ruleError = errMessage(e); }
 
-  if (external) {
-    const updated = await checkUpdates(cards, exec);
+  let missed = new Map<string, number>();
+  if (ruleConfig.oracle) {
+    try {
+      missed = await missedFromTranscripts(roots, ruleConfig.oracle, days, when);
+    } catch (e) {
+      warnings.push({ source: 'oracle', message: errMessage(e) });
+    }
+  }
+  let cards = buildCards(items, usage, lifetimeFromClaudeJson(roots), missed);
+
+  try {
+    const updated = checkUpdates(cards, roots);
     cards = updated.cards;
     warnings.push(...updated.warnings);
-  } else {
-    warnings.push({ source: 'updates', message: 'skipped: update check reads the real home, not --home' });
+  } catch (e) {
+    warnings.push({ source: 'updates', message: errMessage(e) });
   }
+
+  // descriptions from an earlier `enrich` run live in a cache next to the state file
+  const out = values.out ?? path.join(roots.stateDir, 'state.json');
+  const cache = loadCache(path.join(path.dirname(out), CACHE_NAME));
+  warnings.push(...cache.warnings);
+  const applied = applyCache(cards, cache);
+  cards = applied.cards;
 
   let rules: RuleResult[] = [];
   try {
-    const ruleFile = values.rules ?? path.join(roots.stateDir, 'rules.json');
-    rules = await evaluateRules(roots, loadRules(ruleFile), days, when);
+    if (ruleError !== undefined) throw new Error(ruleError);
+    rules = await evaluateRules(roots, ruleConfig.rules, days, when);
   } catch (e) {
     warnings.push({ source: 'rules', message: errMessage(e) });
   }
@@ -139,15 +172,49 @@ export async function main(argv: string[], deps: Deps = {}): Promise<number> {
   const state: State = {
     generatedAt: when.toISOString(),
     usageSource: usage.source,
+    enriched: applied.enriched,
+    sessions: usage.sessions,
     cards, rules, warnings, totals,
   };
-  const out = values.out ?? path.join(roots.stateDir, 'state.json');
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, JSON.stringify(state, null, 2) + '\n');
   appendSnapshot(roots, state);
 
   process.stdout.write(
     `${cards.length} items, ${warnings.length} warnings, usage from ${state.usageSource} -> ${out}\n`,
+  );
+  return 0;
+}
+
+/** Reads state.json, describes cards that have no cache hit, writes state.json again. */
+async function enrichCommand(
+  values: { home?: string; out?: string; cmd?: string; batch?: string },
+  env: NodeJS.ProcessEnv,
+): Promise<number> {
+  const batch = values.batch === undefined ? 25 : Number(values.batch);
+  if (!Number.isInteger(batch) || batch < 1) {
+    process.stderr.write(`--batch needs a whole number of 1 or more\n${USAGE}\n`);
+    return 2;
+  }
+  const roots = resolveRoots(values.home, env);
+  const file = values.out ?? path.join(roots.stateDir, 'state.json');
+  let state: State;
+  try {
+    state = JSON.parse(fs.readFileSync(file, 'utf8')) as State;
+    if (!Array.isArray(state.cards)) throw new Error('no cards array');
+  } catch (e) {
+    process.stderr.write(`cannot read ${file}: ${errMessage(e)}. Run scan first.\n`);
+    return 1;
+  }
+  const report = await enrichCards(state.cards, {
+    command: values.cmd, batch, cacheFile: path.join(path.dirname(file), CACHE_NAME),
+  });
+  state.cards = report.cards;
+  state.enriched = report.enriched;
+  state.warnings = [...(state.warnings ?? []).filter((w) => w.source !== 'enrich'), ...report.warnings];
+  fs.writeFileSync(file, JSON.stringify(state, null, 2) + '\n');
+  process.stdout.write(
+    `${report.cached} cached, ${report.sent} sent in ${report.batches} batches, ${report.learned} described, ${report.warnings.length} warnings -> ${file}\n`,
   );
   return 0;
 }

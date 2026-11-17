@@ -1,8 +1,15 @@
-[
-  {
-    "id": "skill-oracle",
-    "title": "Skill oracle runs in working sessions",
-    "pattern": "^jev-skill ",
-    "target": 0.8
+{
+  "rules": [
+    {
+      "id": "skill-oracle",
+      "title": "Skill oracle runs in working sessions",
+      "pattern": "^jev-skill ",
+      "target": 0.8
+    }
+  ],
+  "oracle": {
+    "command": "^jev-skill ",
+    "line": "^- (?<skill>\\S+) \\(fit (?<fit>[0-9.]+)\\)",
+    "minFit": 0.5
   }
-]
+}

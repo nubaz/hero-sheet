@@ -15,11 +15,19 @@ describe('verdictFor', () => {
   const skill = item({ id: 'cli:skill:a', kind: 'skill', surface: 'cli', name: 'a' });
   it('applies the thresholds', () => {
     expect(verdictFor({ ...skill, enabled: false }, { uses30d: 50 })).toBe('disabled');
-    expect(verdictFor(skill, { uses30d: 0 })).toBe('dead_weight');
-    expect(verdictFor(skill, undefined)).toBe('dead_weight');
+    expect(verdictFor(skill, { uses30d: 0 })).toBe('asleep');
+    expect(verdictFor(skill, undefined)).toBe('asleep');
     expect(verdictFor(skill, { uses30d: 1 })).toBe('rare');
     expect(verdictFor(skill, { uses30d: 2 })).toBe('rare');
     expect(verdictFor(skill, { uses30d: 3 })).toBe('active');
+  });
+  it('marks zero uses with a recommendation that was not followed as missed', () => {
+    expect(verdictFor(skill, { uses30d: 0, missed30d: 2 })).toBe('missed');
+    expect(verdictFor(skill, { uses30d: 0, missed30d: 0 })).toBe('asleep');
+    // used items keep their usage verdict, disabled stays disabled
+    expect(verdictFor(skill, { uses30d: 1, missed30d: 2 })).toBe('rare');
+    expect(verdictFor(skill, { uses30d: 5, missed30d: 2 })).toBe('active');
+    expect(verdictFor({ ...skill, enabled: false }, { uses30d: 0, missed30d: 2 })).toBe('disabled');
   });
   it('gives kinds without a usage signal unknown', () => {
     for (const kind of ['hook', 'memory', 'instructions', 'scheduled_task'] as const) {
@@ -73,6 +81,20 @@ describe('buildCards', () => {
     expect(by.get('cli:mcp_server:fibery')!.usage.uses30d).toBe(5);
     expect(by.get('cli:skill:alpha')!.usage.lifetimeUses).toBe(7);
     expect(by.get('cli:skill:alpha')!.usage.lastUsedAt).toBe('2026-11-01T00:00:00.000Z');
-    expect(by.get('cli:skill:alpha')!.verdict).toBe('dead_weight');
+    expect(by.get('cli:skill:alpha')!.verdict).toBe('asleep');
+  });
+
+  it('carries missed30d on every card, resolved like usage refs', () => {
+    const items = [
+      item({ id: 'cli:skill:a', kind: 'skill', surface: 'cli', name: 'a' }),
+      item({ id: 'cli:skill:b', kind: 'skill', surface: 'cli', name: 'b' }),
+      item({ id: 'desktop:skill:c', kind: 'skill', surface: 'desktop', name: 'c' }),
+    ];
+    const missed = new Map([['a', 2], ['anthropic-skills:c', 1], ['nope', 9]]);
+    const cards = buildCards(items, usageMap({ b: 4 }), new Map(), missed);
+    const by = new Map(cards.map((c) => [c.id, c]));
+    expect(by.get('cli:skill:a')).toMatchObject({ verdict: 'missed', usage: { missed30d: 2 } });
+    expect(by.get('desktop:skill:c')).toMatchObject({ verdict: 'missed', usage: { missed30d: 1 } });
+    expect(by.get('cli:skill:b')).toMatchObject({ verdict: 'active', usage: { missed30d: 0 } });
   });
 });

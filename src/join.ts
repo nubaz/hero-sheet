@@ -1,4 +1,5 @@
 import type { Card, Item, Surface, Usage, Verdict } from './types.js';
+import { defaultBranch, packOf } from './branch.js';
 import { normalizeSkillRef, type UsageMap } from './usage/index.js';
 
 export { normalizeSkillRef };
@@ -10,7 +11,7 @@ export function verdictFor(item: Item, usage: Usage | undefined): Verdict {
   if (!item.enabled) return 'disabled';
   if (NO_SIGNAL.has(item.kind)) return 'unknown';
   const uses = usage?.uses30d ?? 0;
-  if (uses === 0) return 'dead_weight';
+  if (uses === 0) return (usage?.missed30d ?? 0) > 0 ? 'missed' : 'asleep';
   if (uses <= 2) return 'rare';
   return 'active';
 }
@@ -32,6 +33,7 @@ export function buildCards(
   items: Item[],
   usage: UsageMap,
   lifetime: Map<string, { lifetimeUses: number; lastUsedAt: string }>,
+  missed: Map<string, number> = new Map(),
 ): Card[] {
   const byKey = new Map<string, Item>();
   for (const it of items) byKey.set(`${it.kind}|${it.surface}|${it.name}`, it);
@@ -68,6 +70,13 @@ export function buildCards(
     s.lifetimeUses = (s.lifetimeUses ?? 0) + l.lifetimeUses;
     if (!s.lastUsedAt || l.lastUsedAt > s.lastUsedAt) s.lastUsedAt = l.lastUsedAt;
   }
+  // missed: skill references the oracle recommended and the session did not load
+  for (const [ref, n] of missed) {
+    const target = resolveSkill(ref);
+    if (!target) continue;
+    const s = slot(target.id);
+    s.missed30d = (s.missed30d ?? 0) + n;
+  }
   for (const [ref, u] of usage.agents) {
     const target = items.find((i) => i.kind === 'agent' && i.name === ref);
     if (!target) continue;
@@ -88,7 +97,10 @@ export function buildCards(
     for (const child of items) {
       if (child.origin !== plugin.name || (child.kind !== 'skill' && child.kind !== 'agent')) continue;
       const c = acc.get(child.id);
-      if (c) merge(total, c.uses30d, c.lastUsedAt);
+      if (c) {
+        merge(total, c.uses30d, c.lastUsedAt);
+        if (c.missed30d) total.missed30d = (total.missed30d ?? 0) + c.missed30d;
+      }
     }
     for (const [server, u] of usage.servers) {
       if (server.startsWith(`plugin_${pluginName}_`)) merge(total, u.uses30d, u.lastUsedAt);
@@ -97,6 +109,7 @@ export function buildCards(
 
   return items.map((it) => {
     const u = acc.get(it.id) ?? { uses30d: 0 };
-    return { ...it, usage: u, verdict: verdictFor(it, u) };
+    u.missed30d ??= 0;
+    return { ...it, branch: defaultBranch(it), pack: packOf(it), usage: u, verdict: verdictFor(it, u) };
   });
 }

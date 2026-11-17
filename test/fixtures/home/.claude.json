@@ -1,0 +1,24 @@
+{
+  "numStartups": 1,
+  "mcpServers": {
+    "secret": {
+      "type": "http",
+      "url": "https://user:pw-in-url@example.com/mcp?key=urlkey-999",
+      "headers": { "Authorization": "Bearer abc" },
+      "env": { "API_KEY": "sk-test-123" }
+    },
+    "local": {
+      "command": "npx",
+      "args": ["-y", "some-package", "--token", "tok-xyz"],
+      "env": { "OTHER_KEY": "env-value-456" }
+    }
+  },
+  "projects": {
+    "/work/demo": {
+      "mcpServers": {
+        "scoped": { "type": "sse", "url": "http://localhost:8080/sse" }
+      }
+    }
+  },
+  "skillUsage": {}
+}

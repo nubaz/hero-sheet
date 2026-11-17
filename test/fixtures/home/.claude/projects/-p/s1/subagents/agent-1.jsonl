@@ -1,0 +1,1 @@
+{"type":"assistant","timestamp":"2026-11-10T10:00:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"x1","name":"mcp__shouldskip__tool","input":{}}]}}

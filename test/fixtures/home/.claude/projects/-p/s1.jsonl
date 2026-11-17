@@ -1,0 +1,9 @@
+{"type":"assistant","timestamp":"2026-11-10T10:00:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"t1","name":"mcp__90ab26c7-3b7c-4dfc-a3de-75002b2eb5f7__firecrawl_search","input":{}}]}}
+{"type":"assistant","timestamp":"2026-11-10T10:01:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"t2","name":"mcp__ccd_turn__update_plan","input":{}}]}}
+{"type":"assistant","timestamp":"2026-11-11T09:00:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"t3","name":"mcp__jina__read_url","input":{}}]}}
+{"type":"attachment","timestamp":"2026-11-11T09:00:01.000Z","attachment":{"type":"deferred_tools_delta","addedNames":["mcp__90ab26c7-3b7c-4dfc-a3de-75002b2eb5f7__alexandria_library_read"]}}
+not json {{{
+{"type":"assistant","timestamp":"2026-11-12T08:00:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"t4","name":"Skill","input":{"skill":"hindsight"}}]}}
+{"type":"assistant","timestamp":"2026-11-13T08:00:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"t5","name":"Skill","input":{"skill":"anthropic-skills:caveman"}}]}}
+{"type":"assistant","timestamp":"2026-11-14T08:00:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"t6","name":"Skill","input":{"skill":"hindsight"}},{"type":"tool_use","id":"t7","name":"Skill","input":{"skill":"compact"}}]}}
+{"type":"assistant","timestamp":"2025-01-01T08:00:00.000Z","message":{"role":"assistant","content":[{"type":"tool_use","id":"t8","name":"Skill","input":{"skill":"hindsight"}}]}}
